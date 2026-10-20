@@ -1,4 +1,4 @@
-import { readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { setTimeout as delay } from "node:timers/promises";
 
 function arg(name) {
@@ -32,5 +32,6 @@ for (let index = 0; index < role.presets.length; index += 1) {
 }
 
 const output = new URL(`../docs/content/precomputed/${roleId}.json`, import.meta.url);
+await mkdir(new URL("./", output), { recursive: true });
 await writeFile(output, `${JSON.stringify({ generated_utc: new Date().toISOString(), questions_version: questionsVersion, model, presets }, null, 2)}\n`);
 console.log(`Wrote ${role.presets.length} presets to ${output.pathname}`);
