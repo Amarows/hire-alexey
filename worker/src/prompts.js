@@ -74,7 +74,7 @@ export const OPERATING_ASSUMPTION =
 
 export const CLAUDE_MODEL = "claude-opus-5-5";
 export const CLAUDE_EFFORT = "medium";
-export const CLAUDE_MAX_TOKENS = 4000;
+export const CLAUDE_MAX_TOKENS = 12000; // includes adaptive thinking; non-streaming stays under SDK timeouts
 
 // Shared system prompt. CONTEXT (profile + role JSON) is appended by the worker as a second system block
 // with cache_control, so it is cached across calls.

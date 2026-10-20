@@ -1,0 +1,3 @@
+Implemented the worker API, mocked Vitest coverage, precompute script, README, Wrangler config, and CI job within the allowed paths. `worker/src/prompts.js` and `docs/js/matcher.js` are unchanged. No commit was made, and no calls were made to either model API.
+
+**Verification:** JavaScript syntax checks and the source secret scan passed. I could not complete the requested tests or dry run: npm registry requests failed with `EACCES`, so dependencies and `package-lock.json` were not installed. Consequently, `npm ci` failed because the lockfile is missing; `npx vitest run` and `npx wrangler deploy --dry-run --outdir dist` could not start. The worker acceptance checks remain unverified.
