@@ -1,0 +1,5 @@
+Implemented the matcher, content validator, tests, root npm scripts, and CI workflow within the brief’s allowed files. No commit was made.
+
+**Checks:** `node --test` passed (8/8); `npm test` passed (8/8); `node scripts/validate-content.mjs` and `npm run validate` passed; the matcher import check and `git diff --check` passed.
+
+The privacy scan skips `_comment` and `source` metadata: the existing comment names restricted topics, and the source citation contains a numeric LinkedIn posting ID. Content values remain scanned, including the phone-number mutation test.
