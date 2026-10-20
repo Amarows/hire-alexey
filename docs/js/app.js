@@ -1,5 +1,5 @@
-import { DIMS, clampSliders, matchCases, activeGaps } from "./matcher.js";
-import { WORKER_URL } from "./config.js";
+import { DIMS, clampSliders, pickEvidence, activeGaps } from "./matcher.js?v=4";
+import { WORKER_URL } from "./config.js?v=4";
 
 const ROLE_ID = document.documentElement.dataset.role || "leva";
 const $ = (id) => document.getElementById(id);
@@ -15,25 +15,29 @@ const el = (tag, attrs = {}, ...kids) => {
 };
 const store = {
   get(k) { try { return sessionStorage.getItem(k); } catch { return null; } },
-  set(k, v) { try { sessionStorage.setItem(k, v); } catch { /* storage blocked: keep in memory only */ } },
+  set(k, v) { try { sessionStorage.setItem(k, v); } catch { /* storage blocked: memory only */ } },
 };
 
-const BANDS = ["≤ 2 wk", "2–4 wk", "1–2 mo", "2–4 mo", "> 4 mo"];
+// Must match JEV_QUESTIONS_VERSION and time_to_prototype.criteria in worker/src/prompts.js.
+const QUESTIONS_VERSION = "2026-10-20.3";
+const BANDS = ["≤ 2 days", "≤ 1 week", "2–3 weeks", "1–2 months", "longer"];
 const FIT_LEVELS = ["none", "adjacent", "partial", "strong", "direct"];
 const RISK_LABELS = {
-  domain: "missing domain knowledge", regulatory: "regulator or licence approval",
-  stakeholders: "aligning legal, compliance, customers and engineering", build: "the technical build",
-  scope: "unclear scope", none: "no material risk",
+  domain: "domain knowledge", regulatory: "regulatory approval", stakeholders: "aligning stakeholders",
+  build: "the build itself", scope: "unclear scope", none: "none stands out",
 };
+const SUGGESTED = [
+  "What has he built that is closest to LEVA's product?",
+  "How does he use AI coding tools day to day?",
+  "What would his first month at LEVA look like?",
+];
 
 let profile, role, precomputed = null;
 let state = { preset: null, sliders: {}, title: "", brief: "" };
-let lastJev = null;            // {derived, ...} for the current project, or null
+let lastAssessment = null;
 let accessCode = store.get("ha_code") || "";
-let task = "plan";
-let draftKind = "invite";
+let task = "ask";
 
-// ---------- data ----------
 async function loadJSON(path) {
   const r = await fetch(path, { cache: "no-cache" });
   if (!r.ok) throw new Error(`${path}: ${r.status}`);
@@ -41,34 +45,60 @@ async function loadJSON(path) {
 }
 
 async function init() {
-  [profile, role] = await Promise.all([
-    loadJSON("../content/profile.json"),
-    loadJSON(`../content/roles/${ROLE_ID}.json`),
-  ]);
+  [profile, role] = await Promise.all([loadJSON("../content/profile.json"), loadJSON(`../content/roles/${ROLE_ID}.json`)]);
   try { precomputed = await loadJSON(`../content/precomputed/${ROLE_ID}.json`); } catch { precomputed = null; }
-
+  if (precomputed && precomputed.questions_version !== QUESTIONS_VERSION) precomputed = null; // stale: different questions
   renderHero();
   renderSliders();
   renderPresets();
   renderFit();
   renderRecord();
-  renderContact();
+  renderStats();
+  $("email").textContent = profile.contact.email;
+  $("linkedin").href = profile.contact.linkedin;
+  $("postingLink").href = role.role_context.posting_url;
   wireAccess();
-  wireClaude();
-  wireDraft();
-  $("jevRun").addEventListener("click", runJev);
+  wireAsk();
+  $("assessRun").addEventListener("click", runAssessment);
   applyPreset(role.presets[0].id);
+}
+
+// ---------- access code ----------
+function setAccess(code, msg) {
+  accessCode = code; store.set("ha_code", code);
+  const s = $("accessState");
+  s.textContent = msg || (code ? "Live AI unlocked." : "Saved results work without a code.");
+  s.classList.toggle("ok", !!code && !msg);
+}
+
+// Flash the access bar when a live-AI button is used without a code.
+function needCode() {
+  if (accessCode) return false;
+  const bar = $("accessForm");
+  bar.classList.remove("nudge"); void bar.offsetWidth; bar.classList.add("nudge");
+  $("accessState").textContent = "Enter the access code to use live AI.";
+  $("accessCode").focus({ preventScroll: true });
+  window.scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  return true;
+}
+
+function wireAccess() {
+  if (accessCode) setAccess(accessCode);
+  $("accessForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const v = $("accessCode").value.trim();
+    $("accessCode").value = "";
+    $("accessForm").classList.remove("nudge");
+    setAccess(v);
+  });
 }
 
 // ---------- hero ----------
 function renderHero() {
   $("question").textContent = role.question;
   role.answer.forEach((line, i) => $("answer").append(el("li", {}, el("span", { text: String(i + 1).padStart(2, "0") }), line)));
-  const facts = [
-    "14+ years in quantitative finance", "UBS Director, Group Risk Control", profile.credentials,
-    profile.permit, profile.location, profile.languages.map((l) => `${l.lang} ${l.level.split(" ")[0]}`).join(" · "),
-  ];
-  facts.forEach((f) => $("facts").append(el("span", { class: "chip", text: f })));
+  ["14+ years in quantitative finance", "Ex-UBS Director, Group Risk Control", profile.credentials, profile.permit, profile.location]
+    .forEach((f) => $("facts").append(el("span", { class: "chip", text: f })));
 }
 
 // ---------- simulator ----------
@@ -82,8 +112,8 @@ function renderPresets() {
   custom.addEventListener("click", () => {
     state.preset = null;
     $("projTitle").value = "Your project"; $("projBrief").value = "";
-    syncFromInputs(); markPreset();
-    $("projBrief").focus();
+    document.querySelector("details.proj").open = true;
+    syncFromInputs(); markPreset(); $("projTitle").focus();
   });
   $("presets").append(custom);
   for (const id of ["projTitle", "projBrief"]) $(id).addEventListener("input", () => { state.preset = null; syncFromInputs(); markPreset(); });
@@ -92,13 +122,12 @@ function renderPresets() {
 function renderSliders() {
   for (const d of DIMS) {
     const meta = profile.dimensions[d];
-    const input = el("input", { type: "range", min: "0", max: "100", step: "5", id: `s_${d}`, "aria-describedby": `e_${d}` });
+    const input = el("input", { type: "range", min: "0", max: "100", step: "5", id: `s_${d}` });
     input.addEventListener("input", () => { state.preset = null; syncFromInputs(); markPreset(); });
     $("sliders").append(el("div", { class: "slider" },
       el("div", { class: "row" }, el("label", { for: `s_${d}` }, el("b", { text: meta.label })), el("span", { class: "num", id: `v_${d}` })),
       input,
-      el("div", { class: "ends", id: `e_${d}` }, el("span", { text: meta.left }), el("span", { text: meta.right })),
-    ));
+      el("div", { class: "ends" }, el("span", { text: meta.left }), el("span", { text: meta.right }))));
   }
 }
 
@@ -106,16 +135,16 @@ function applyPreset(id) {
   const p = role.presets.find((x) => x.id === id);
   if (!p) return;
   state.preset = id;
-  $("projTitle").value = p.title;
-  $("projBrief").value = p.brief;
+  $("projTitle").value = p.title; $("projBrief").value = p.brief;
   for (const d of DIMS) $(`s_${d}`).value = p.sliders[d];
-  syncFromInputs();
-  markPreset();
+  syncFromInputs(); markPreset();
 }
 
 function markPreset() {
   for (const b of $("presets").children) b.setAttribute("aria-pressed", String(b.dataset.id === (state.preset || "custom")));
 }
+
+const projectKey = () => JSON.stringify([state.title, state.brief, state.sliders]);
 
 function syncFromInputs() {
   const raw = {};
@@ -124,163 +153,135 @@ function syncFromInputs() {
   state.title = $("projTitle").value.trim() || "Untitled project";
   state.brief = $("projBrief").value.trim();
   for (const d of DIMS) $(`v_${d}`).textContent = state.sliders[d];
-  renderEvidence();
-  renderGaps();
+  renderRamp(); renderEvidence();
   const saved = state.preset && precomputed?.presets?.[state.preset];
-  if (saved) showJev(saved, "saved");
-  else if (lastJev?.key !== projectKey()) { lastJev = null; showJevEmpty(); }
+  if (saved) showAssessment(saved, "saved");
+  else if (lastAssessment?.key !== projectKey()) { lastAssessment = null; showEmpty("Press Assess this project for a live assessment."); }
 }
 
-const projectKey = () => JSON.stringify([state.title, state.brief, state.sliders]);
-
-function caseCard(c, score) {
-  return el("article", { class: "case" },
-    el("div", { class: "meta" },
-      el("span", { class: "kind", text: c.kind }), el("span", { text: c.period }),
-      score != null ? el("span", { class: "match", text: `match ${Math.round(score * 100)}%` }) : null),
-    el("h3", {}, el("a", { href: `#case-${c.id}`, text: c.title })),
-    el("p", { text: c.headline }));
+function renderRamp() {
+  const box = $("ramp"); box.replaceChildren();
+  const gaps = activeGaps(profile, state.sliders);
+  if (!gaps.length) { box.append(el("p", { class: "none", text: "Nothing stands out for this project." })); return; }
+  for (const g of gaps) box.append(el("details", {}, el("summary", { text: g.title }),
+    el("p", { text: g.detail }), g.mitigation ? el("p", {}, el("strong", { text: "Mitigation: " }), g.mitigation) : null));
 }
 
 function renderEvidence() {
   const box = $("evidence"); box.replaceChildren();
-  for (const { case: c, score } of matchCases(profile, state.sliders, 3)) box.append(caseCard(c, score));
+  const curated = role.presets.find((p) => p.id === state.preset)?.evidence || [];
+  for (const { case: c, score } of pickEvidence(profile, state.sliders, 3, curated))
+    box.append(el("li", {}, el("a", { href: `#case-${c.id}`, text: c.title }),
+      el("span", { class: "num", text: score == null ? "selected for this project" : `match ${Math.round(score * 100)}%` })));
 }
 
-function renderGaps() {
-  const box = $("gaps"); box.replaceChildren();
-  const gaps = activeGaps(profile, state.sliders);
-  if (!gaps.length) { box.append(el("p", { class: "none", text: "No ramp-up area stands out for this project." })); return; }
-  for (const g of gaps) box.append(el("div", { class: "gapi" }, el("b", { text: g.title }), el("br"), g.detail,
-    g.mitigation ? el("span", { class: "mit" }, el("strong", { text: "Mitigation: " }), g.mitigation) : null));
+// ---------- assessment ----------
+function showEmpty(msg) {
+  $("assessBody").replaceChildren(el("p", { class: "none", text: msg }));
+  $("asked").hidden = true;
 }
 
-// ---------- Jev ----------
-function showJevEmpty(msg) {
-  $("jevBody").replaceChildren(el("p", { class: "none", text: msg || "Press Assess to get a delivery assessment for this project." }));
-  $("jevAsked").hidden = true;
+function fmtTime(weeks) {
+  if (weeks == null) return "–";
+  const days = Math.round(weeks * 7);
+  return weeks < 2 ? `≈ ${days} day${days === 1 ? "" : "s"}` : `≈ ${Math.round(weeks)} wk`;
 }
 
-function showJev(res, source) {
+function showAssessment(res, source) {
   const d = res.derived || {};
-  lastJev = { key: projectKey(), derived: d };
+  lastAssessment = { key: projectKey(), derived: d };
   const pct = (x) => (x == null ? "–" : `${Math.round(x * 100)}%`);
   const band = d.likely_band != null ? BANDS[d.likely_band] : "–";
-  const fit = d.fit_level != null ? FIT_LEVELS[Math.round(d.fit_level)] : "–";
   const max = Math.max(...(d.weeks_dist || [0]), 0.0001);
-  const bars = el("div", { class: "bars", role: "img", "aria-label": `Time to first prototype, most likely ${band}` });
+  const bars = el("div", { class: "bars", role: "img", "aria-label": `Time to a clickable prototype, most likely ${band}` });
   (d.weeks_dist || [0, 0, 0, 0, 0]).forEach((p, i) =>
     bars.append(el("div", { class: `bar${i === d.likely_band ? " top" : ""}`, style: `height:${Math.max(2, (p / max) * 100)}%`, title: `${BANDS[i]}: ${pct(p)}` })));
   const labels = el("div", { class: "barlabels" }); BANDS.forEach((b) => labels.append(el("span", { text: b })));
-  const when = res.generated_utc || precomputed?.generated_utc;
-  $("jevBody").replaceChildren(
-    el("p", { class: "jevhead src", text: source === "saved"
-      ? `Saved result for this preset${when ? `, ${when.slice(0, 10)}` : ""}`
-      : "Live result" }),
+  const when = precomputed?.generated_utc;
+  $("assessBody").replaceChildren(
+    el("p", { class: "src", text: source === "saved" ? `Saved result${when ? `, ${when.slice(0, 10)}` : ""}` : "Live result" }),
     el("div", { class: "metrics" },
-      metric(pct(d.p_mvp), "chance of a usable MVP within six months"),
-      metric(d.expected_weeks != null ? `${d.expected_weeks} wk` : "–", `expected time to first prototype (most likely ${band})`),
-      metric(fit, "how closely the evidence fits"),
-    ),
+      metric(fmtTime(d.expected_weeks), `to a clickable prototype (most likely ${band})`),
+      metric(pct(d.p_mvp), "chance of a usable MVP within 3 months"),
+      metric(d.fit_level != null ? FIT_LEVELS[Math.round(d.fit_level)] : "–", "fit of his evidence to the project")),
     bars, labels,
-    el("p", { class: "riskline" },
-      el("b", { text: "Main risk: " }), d.main_risk ? RISK_LABELS[d.main_risk] || d.main_risk : "–",
-      ` · Needs a specialist he can't borrow from LEVA's staff: ${pct(d.p_specialist)}`),
-  );
+    el("p", { class: "riskline" }, el("b", { text: "Main risk: " }), d.main_risk ? RISK_LABELS[d.main_risk] || d.main_risk : "–"));
   if (res.state && res.questions) {
-    $("jevAskedPre").textContent = JSON.stringify({ state: res.state, questions: res.questions }, null, 2);
-    $("jevAsked").hidden = false;
-  } else $("jevAsked").hidden = true;
+    $("askedPre").textContent = JSON.stringify({ state: res.state, questions: res.questions }, null, 2);
+    $("asked").hidden = false;
+  } else $("asked").hidden = true;
 }
 
 const metric = (v, l) => el("div", { class: "metric" }, el("div", { class: "v", text: v }), el("div", { class: "l", text: l }));
 
-async function runJev() {
-  if (!accessCode) { showJevEmpty("Enter the access code at the top of the page to run a live assessment. Presets show saved results without it."); return; }
-  const btn = $("jevRun"); btn.disabled = true;
-  $("jevBody").replaceChildren(el("p", { class: "busy", text: "Assessing…" }));
+async function runAssessment() {
+  if (needCode()) return;
+  const btn = $("assessRun"); btn.disabled = true;
+  $("assessBody").replaceChildren(el("p", { class: "busy", text: "Assessing…" }));
   try {
-    const res = await api("/api/jev", { role: ROLE_ID, project: { title: state.title, brief: state.brief }, sliders: state.sliders });
-    showJev(res, "live");
-  } catch (e) { $("jevBody").replaceChildren(el("p", { class: "err", text: e.message })); }
+    showAssessment(await api("/api/jev", { role: ROLE_ID, preset: state.preset, project: { title: state.title, brief: state.brief }, sliders: state.sliders }), "live");
+  } catch (e) { $("assessBody").replaceChildren(el("p", { class: "err", text: e.message })); }
   finally { btn.disabled = false; }
 }
 
-// ---------- API ----------
 async function api(path, body) {
   let r;
   try {
-    r = await fetch(WORKER_URL + path, {
-      method: "POST", headers: { "content-type": "application/json", "x-access-code": accessCode }, body: JSON.stringify(body),
-    });
+    r = await fetch(WORKER_URL + path, { method: "POST", headers: { "content-type": "application/json", "x-access-code": accessCode }, body: JSON.stringify(body) });
   } catch { throw new Error("The AI service could not be reached. Check your connection and try again."); }
   const data = await r.json().catch(() => ({}));
-  if (r.status === 401) { setAccess("", "The access code was not accepted."); throw new Error("The access code was not accepted. Re-enter it at the top of the page."); }
+  if (r.status === 401) { setAccess(""); needCode(); throw new Error("The access code was not accepted. Re-enter it at the top."); }
   if (r.status === 429) throw new Error("Too many requests from this connection. Wait a few minutes and try again.");
   if (!r.ok || data.error) throw new Error(data.message || `The AI service returned an error (${r.status}).`);
   return data;
 }
 
-// ---------- access ----------
-function setAccess(code, msg) {
-  accessCode = code; store.set("ha_code", code);
-  const s = $("accessState");
-  s.textContent = msg || (code ? "Live AI unlocked for this tab." : "Live AI locked; preset results still work.");
-  s.classList.toggle("ok", !!code && !msg);
-}
-
-function wireAccess() {
-  if (accessCode) setAccess(accessCode);
-  $("accessForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-    const v = $("accessCode").value.trim();
-    $("accessCode").value = "";
-    setAccess(v, v ? null : undefined);
-  });
-}
-
-// ---------- Claude ----------
-const TASK_UI = {
-  plan: { button: "Write the plan", hint: "Uses the project set in the simulator." },
-  ask: { button: "Ask", hint: "Answers come only from this page's material." },
-  crossexam: { button: "Challenge the assessment", hint: "Needs an assessment of the current project." },
+// ---------- ask ----------
+const TASKS = {
+  plan: { button: "Write the 30/60/90 plan", hint: "A plan for the project currently set in the simulator." },
+  crossexam: { button: "Challenge the assessment", hint: "Argues both ways on the current assessment and suggests an interview question." },
 };
 
-function wireClaude() {
+function wireAsk() {
+  for (const q of SUGGESTED) {
+    const b = el("button", { class: "chip", type: "button", text: q });
+    b.addEventListener("click", () => { $("askText").value = q; runClaude("ask"); });
+    $("suggest").append(b);
+  }
   document.querySelectorAll(".tab").forEach((t) => t.addEventListener("click", () => {
     task = t.dataset.task;
     document.querySelectorAll(".tab").forEach((x) => x.setAttribute("aria-selected", String(x === t)));
-    $("askField").hidden = task !== "ask";
-    $("claudeRun").textContent = TASK_UI[task].button;
-    $("claudeHint").textContent = TASK_UI[task].hint;
+    $("askUi").hidden = task !== "ask";
+    $("taskUi").hidden = task === "ask";
+    if (task !== "ask") { $("taskRun").textContent = TASKS[task].button; $("taskHint").textContent = TASKS[task].hint; }
   }));
-  $("claudeHint").textContent = TASK_UI.plan.hint;
-  $("askText").addEventListener("keydown", (e) => { if (e.key === "Enter") runClaude(); });
-  $("claudeRun").addEventListener("click", runClaude);
+  $("askRun").addEventListener("click", () => runClaude("ask"));
+  $("askText").addEventListener("keydown", (e) => { if (e.key === "Enter") runClaude("ask"); });
+  $("taskRun").addEventListener("click", () => runClaude(task));
 }
 
-async function runClaude() {
-  const out = $("claudeOut");
-  if (!accessCode) { out.replaceChildren(el("p", { class: "none", text: "Enter the access code at the top of the page to use Claude." })); return; }
+async function runClaude(which) {
+  if (needCode()) return;
+  const out = $("out"); out.hidden = false;
   const project = { title: state.title, brief: state.brief };
   let body;
-  if (task === "plan") body = { role: ROLE_ID, task, project, sliders: state.sliders };
-  else if (task === "ask") {
+  if (which === "ask") {
     const q = $("askText").value.trim();
-    if (!q) { $("askText").focus(); return; }
-    body = { role: ROLE_ID, task, question: q };
-  } else {
-    if (!lastJev) { out.replaceChildren(el("p", { class: "none", text: "Assess the current project first, or pick a preset with a saved result." })); return; }
-    body = { role: ROLE_ID, task, project, sliders: state.sliders, jev: lastJev.derived };
+    if (!q) { $("askText").focus(); out.hidden = true; return; }
+    body = { role: ROLE_ID, task: "ask", question: q };
+  } else if (which === "plan") body = { role: ROLE_ID, task: "plan", project, sliders: state.sliders };
+  else {
+    if (!lastAssessment) { out.replaceChildren(el("p", { class: "none", text: "Assess the current project first, or pick a project with a saved result." })); return; }
+    body = { role: ROLE_ID, task: "crossexam", project, sliders: state.sliders, jev: lastAssessment.derived };
   }
-  const btn = $("claudeRun"); btn.disabled = true;
-  out.replaceChildren(el("p", { class: "busy", text: "Claude is writing… this can take up to a minute." }));
-  try { const res = await api("/api/claude", body); renderMarkdown(out, res.text); }
+  const buttons = [$("askRun"), $("taskRun")]; buttons.forEach((b) => { b.disabled = true; });
+  out.replaceChildren(el("p", { class: "busy", text: "Claude is writing… up to a minute." }));
+  try { renderMarkdown(out, (await api("/api/claude", body)).text); }
   catch (e) { out.replaceChildren(el("p", { class: "err", text: e.message })); }
-  finally { btn.disabled = false; }
+  finally { buttons.forEach((b) => { b.disabled = false; }); }
 }
 
-// Minimal, safe markdown: headings, bullets, numbered lists, bold, and [case-id] citations. Text nodes only, no innerHTML.
+// Minimal, safe markdown: headings, lists, bold, [case-id] links. Text nodes only.
 function renderMarkdown(target, md) {
   target.replaceChildren();
   const ids = new Set(profile.cases.map((c) => c.id));
@@ -299,9 +300,7 @@ function renderMarkdown(target, md) {
   let list = null;
   for (const raw of String(md || "").split("\n")) {
     const line = raw.trimEnd();
-    const h = line.match(/^#{1,4}\s+(.*)/);
-    const ul = line.match(/^\s*[-*]\s+(.*)/);
-    const ol = line.match(/^\s*\d+[.)]\s+(.*)/);
+    const h = line.match(/^#{1,4}\s+(.*)/), ul = line.match(/^\s*[-*]\s+(.*)/), ol = line.match(/^\s*\d+[.)]\s+(.*)/);
     if (ul || ol) {
       const tag = ul ? "UL" : "OL";
       if (!list || list.tagName !== tag) { list = el(tag.toLowerCase()); target.append(list); }
@@ -310,66 +309,48 @@ function renderMarkdown(target, md) {
     }
     list = null;
     if (!line.trim()) continue;
-    if (h) target.append(el("h4", {}, inline(h[1])));
-    else target.append(el("p", {}, inline(line)));
+    target.append(h ? el("h4", {}, inline(h[1])) : el("p", {}, inline(line)));
   }
 }
 
-// ---------- fit map & record ----------
+// ---------- fit, record, stats ----------
+function caseLink(id) {
+  const c = profile.cases.find((x) => x.id === id);
+  return el("a", { href: `#case-${id}`, text: c ? c.title.split(",")[0] : id });
+}
+
 function renderFit() {
-  const byId = Object.fromEntries(profile.cases.map((c) => [c.id, c]));
-  for (const f of role.fit) {
-    const req = role.role_context.requirements.find((r) => r.id === f.req);
-    const links = el("div", { class: "caselinks" });
-    for (const id of f.cases) links.append(el("a", { href: `#case-${id}`, text: byId[id]?.title || id }));
-    $("fitMap").append(el("div", { class: "fitrow" },
-      el("div", { class: "req", text: req?.text || f.req }),
-      el("span", { class: `pill ${f.strength}`, text: f.strength }),
-      el("div", { class: "note", text: f.note }),
-      f.cases.length ? links : null));
+  const cols = [["strong", "Strong"], ["medium", "Partial"], ["gap", "To build"]];
+  for (const [key, label] of cols) {
+    const items = role.fit.filter((f) => f.strength === key);
+    if (!items.length) continue;
+    const col = el("div", { class: `col ${key}` }, el("h3", {}, el("span", { class: "dot" }), `${label} (${items.length})`));
+    for (const f of items) {
+      const links = el("div", { class: "links" }); f.cases.forEach((id) => links.append(caseLink(id)));
+      col.append(el("div", { class: "box" }, el("b", { text: f.label }), el("p", { text: f.note }), f.cases.length ? links : null));
+    }
+    $("fitCols").append(col);
   }
 }
 
 function renderRecord() {
-  for (const c of profile.cases) {
-    const card = caseCard(c);
-    card.id = `case-${c.id}`;
-    const ul = el("ul"); c.points.forEach((p) => ul.append(el("li", { text: p })));
-    card.append(ul);
-    $("cases").append(card);
+  for (const [gid, gname] of Object.entries(profile.groups)) {
+    const col = el("div", { class: "col" }, el("h3", { text: gname }));
+    for (const c of profile.cases.filter((x) => x.group === gid)) {
+      const ul = el("ul"); c.points.forEach((p) => ul.append(el("li", { text: p })));
+      col.append(el("details", { class: "case", id: `case-${c.id}` },
+        el("summary", {}, el("b", { text: c.title }), el("span", { text: `${c.period} · ${c.kind}` })),
+        el("div", { class: "body" }, el("p", { text: c.headline }), ul)));
+    }
+    $("groups").append(col);
   }
-  for (const t of profile.timeline) {
-    const when = `${t.from.replace("-", ".")} – ${t.to === "present" ? "now" : t.to.replace("-", ".")}`;
-    $("timeline").append(el("div", {}, el("span", { class: "when", text: when }),
-      el("span", { text: [t.role, t.org].filter(Boolean).join(", ") })));
-  }
+  // Opening a case from a link (evidence, fit map, Claude citation) expands it.
+  const openTarget = () => { const t = location.hash && document.querySelector(location.hash); if (t?.tagName === "DETAILS") t.open = true; };
+  addEventListener("hashchange", openTarget); openTarget();
 }
 
-function renderContact() {
-  $("email").textContent = profile.contact.email;
-  $("linkedin").href = profile.contact.linkedin;
-}
-
-// ---------- next step ----------
-function wireDraft() {
-  document.querySelectorAll("[data-kind]").forEach((b) => b.addEventListener("click", () => {
-    draftKind = b.dataset.kind;
-    document.querySelectorAll("[data-kind]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
-  }));
-  $("draftRun").addEventListener("click", async () => {
-    if (!accessCode) { $("draftHint").textContent = "Enter the access code at the top of the page first."; return; }
-    const btn = $("draftRun"); btn.disabled = true; $("draftHint").textContent = "Drafting…";
-    try {
-      const res = await api("/api/claude", { role: ROLE_ID, task: "draft", kind: draftKind,
-        project: { title: state.title, brief: state.brief }, notes: $("draftNotes").value.trim() });
-      $("draftText").value = res.text; $("draftCopy").disabled = false; $("draftHint").textContent = "Edit freely, then copy.";
-    } catch (e) { $("draftHint").textContent = e.message; }
-    finally { btn.disabled = false; }
-  });
-  $("draftCopy").addEventListener("click", async () => {
-    try { await navigator.clipboard.writeText($("draftText").value); $("draftHint").textContent = "Copied."; }
-    catch { $("draftText").select(); $("draftHint").textContent = "Copy was blocked; the text is selected, press Ctrl+C."; }
-  });
+function renderStats() {
+  for (const s of role.build_stats || []) $("stats").append(el("div", { class: "stat" }, el("div", { class: "v", text: s.v }), el("div", { class: "l", text: s.l })));
 }
 
 init().catch((e) => {

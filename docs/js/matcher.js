@@ -43,7 +43,15 @@ export function describeSliders(profile, sliders) {
   }).join("\n");
 }
 
-export function buildJevState(profile, role, project, sliders, operatingAssumption) {
+// Curated evidence ids (from a role preset) come first; the matcher fills the rest, without duplicates.
+export function pickEvidence(profile, sliders, n = 3, curatedIds = []) {
+  const byId = Object.fromEntries((profile?.cases ?? []).map(c => [c.id, c]));
+  const curated = curatedIds.filter(id => byId[id]).map(id => ({ case: byId[id], score: null }));
+  const rest = matchCases(profile, sliders, (profile?.cases ?? []).length).filter(m => !curatedIds.includes(m.case.id));
+  return [...curated, ...rest].slice(0, n);
+}
+
+export function buildJevState(profile, role, project, sliders, operatingAssumption, curatedIds = []) {
   const s = clampSliders(sliders);
   const clean = (value, limit) => String(value ?? "").trim().slice(0, limit);
   return {
@@ -55,7 +63,7 @@ export function buildJevState(profile, role, project, sliders, operatingAssumpti
       brief: clean(project?.brief, 600),
       characteristics: describeSliders(profile, s)
     },
-    evidence: matchCases(profile, s, 5).map(({ case: c }) => ({
+    evidence: pickEvidence(profile, s, 5, curatedIds).map(({ case: c }) => ({
       title: c.title, period: c.period, kind: c.kind, headline: c.headline, points: c.points
     })),
     known_gaps: activeGaps(profile, s).map(g => ({ title: g.title, detail: g.detail, mitigation: g.mitigation })),

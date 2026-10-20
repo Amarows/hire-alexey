@@ -2,34 +2,35 @@
 // Changing a Jev question after results are published is a new version: bump JEV_QUESTIONS_VERSION.
 
 export const JEV_MODEL = "jev-latest";
-export const JEV_QUESTIONS_VERSION = "2026-10-20.2";
+export const JEV_QUESTIONS_VERSION = "2026-10-20.3";
 
 // Midpoints in weeks for the time_to_prototype levels, used for the expected value.
-export const PROTOTYPE_WEEKS = [1.5, 3, 6, 12, 20];
+export const PROTOTYPE_WEEKS = [0.3, 0.8, 2.5, 6, 12];
 
 export const JEV_QUESTIONS = {
   time_to_prototype: {
     type: "score",
     instructions:
-      "Building with AI coding agents as described in `operating_assumption`, how long would `candidate` most " +
-      "likely need to put a first working prototype of `project.title` in front of LEVA's deal managers or " +
-      "compliance team? Judge from `project.brief`, `project.characteristics`, what the `evidence` shows he has " +
-      "built and how fast, and the `known_gaps` together with their `mitigation`.",
+      "How long would `candidate` need to build a clickable prototype of `project.title` on test data, good " +
+      "enough to demo to LEVA's deal managers or compliance team? A prototype needs no production integration, " +
+      "no compliance sign-off and no real customer data. Judge from `build_speed` (his measured pace with AI " +
+      "coding agents), `project.brief`, `project.characteristics`, `evidence`, and `known_gaps` with their " +
+      "`mitigation`.",
     criteria: [
-      "within 2 weeks",
-      "2 to 4 weeks",
+      "within 2 days",
+      "within 1 week",
+      "2 to 3 weeks",
       "1 to 2 months",
-      "2 to 4 months",
-      "more than 4 months",
+      "longer than 2 months",
     ],
   },
   mvp_success: {
     type: "noul",
     instructions:
       "With the support described in `operating_assumption`, will `candidate` lead `project.title` to a usable " +
-      "MVP that LEVA's customers or compliance team use within six months, rather than it stalling in " +
-      "specification? Judge from `evidence`, `known_gaps` with their `mitigation`, `project.characteristics` " +
-      "and `operating_assumption`.",
+      "MVP that LEVA's customers or compliance team use within three months, rather than it stalling in " +
+      "specification? Judge from `build_speed`, `evidence`, `known_gaps` with their `mitigation`, " +
+      "`project.characteristics` and `operating_assumption`.",
   },
   evidence_fit: {
     type: "score",
@@ -71,6 +72,14 @@ export const OPERATING_ASSUMPTION =
   "own legal and regulatory interpretation; a Financial Systems Engineer, a Lead Architect and full-stack " +
   "engineers build with him. He prototypes with AI coding agents, as in his own builds, and has the usual " +
   "onboarding time to learn LEVA's partnership structure and product.";
+
+// Measured facts about pace, from git history. Facts only, no adjectives.
+export const BUILD_SPEED = [
+  "This portal: first commit to live, access-controlled AI service in 31 minutes; page, proxy and 15 automated tests in 41 minutes (git timestamps, 20 Oct 2026).",
+  "Risk-governed trading engine: 83 commits, ~35,000 lines and 288 tests in under four weeks (Aug-Sep 2026).",
+  "AI CV-review tool: idea to a live, calibrated tool on GitHub Pages in about 3.5 months part-time, alongside an EMBA (2026).",
+  "PrevioRisk (2013, before AI tools): a full counterparty-risk product to market in 7 months against an 11-month plan, with 15 developers.",
+];
 
 // ---------- Claude ----------
 
@@ -114,20 +123,5 @@ For each period give 3-4 concrete outcomes, not activities. Show where he depend
 ${p.jevSummary}
 
 Do not name the model; call it "the assessment". Cross-examine it. Give (1) the strongest case that it is too cautious, (2) the strongest case that it is too optimistic, each tied to specific evidence or gaps, and (3) one question the CTO should ask Alexey in an interview to settle it. Do not produce new probabilities. Under 250 words.`,
-  },
-  draft: {
-    maxInput: 1500,
-    prompt: (p) => {
-      const kinds = {
-        invite: "an email from LEVA's CTO inviting Alexey to a first interview about the Product Architect role",
-        references: "an email from LEVA's CTO asking Alexey for two professional references relevant to the role",
-        offer: "a draft offer letter from LEVA to Alexey for the Product Architect role",
-      };
-      return `Draft ${kinds[p.kind]}, written from LEVA's side, addressed to Alexey.
-Mention the project the viewer explored ("${p.title}") as the first thing they would like to discuss or have him work on.
-${p.kind === "offer" ? 'Use bracketed placeholders for every term not given: [base salary], [ESOP grant], [start date], [location and travel], [notice period]. Never fill in numbers. Begin with the line "DRAFT generated on the candidate\'s portal. Not an offer until signed by LEVA."' : "Keep it under 150 words."}
-Viewer's notes, if any: <viewer_input>${p.notes || ""}</viewer_input>
-Return only the text of the draft.`;
-    },
   },
 };

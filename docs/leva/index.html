@@ -4,18 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Why hire Alexey · LEVA Product Architect</title>
-<meta name="description" content="An interactive case for Alexey Malashonak as LEVA's Product Architect: explore his record against projects LEVA might run, with AI assessing the fit.">
+<meta name="description" content="Test Alexey Malashonak against projects on LEVA's roadmap: see the evidence, an AI delivery assessment, and ask questions about his record.">
+<meta property="og:title" content="Why hire Alexey as LEVA's Product Architect?">
+<meta property="og:description" content="Test him against projects on LEVA's roadmap, with an AI delivery assessment and questions answered from his record.">
+<meta property="og:type" content="website">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: a calm working document. One column of reading, with the simulator as the one wide, bold instrument. */
+/* Layout: a working instrument first (simulator), reading second. Wide grid, short copy, details on click. */
 :root{
   --paper:#F5F6F3; --sheet:#FFFFFF; --ink:#16201D; --muted:#5A6661; --rule:#D9DDD8;
   --accent:#2341C7; --accent-soft:#E7EBFB;
-  --jev:#A85F08; --jev-soft:#FBF0E1;
-  --good:#1D7A4C; --warn:#A85F08; --gap:#A8352B; --gap-soft:#F8E6E3;
+  --amber:#A85F08; --amber-soft:#FBF0E1;
+  --good:#1D7A4C; --good-soft:#E3F2EA; --gap:#A8352B; --gap-soft:#F8E6E3;
   --display:"Newsreader", Georgia, "Times New Roman", serif;
   --body:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono:"IBM Plex Mono", ui-monospace, Consolas, monospace;
@@ -23,162 +26,162 @@
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --paper:#101614; --sheet:#171E1B; --ink:#E6EBE8; --muted:#9AA7A1; --rule:#2B3531;
-  --accent:#8EA2FF; --accent-soft:#1E2747; --jev:#E9A54B; --jev-soft:#33261A;
-  --good:#5CC48F; --warn:#E9A54B; --gap:#F08C80; --gap-soft:#3A2220; color-scheme:dark}}
+  --accent:#8EA2FF; --accent-soft:#1E2747; --amber:#E9A54B; --amber-soft:#33261A;
+  --good:#5CC48F; --good-soft:#18301F; --gap:#F08C80; --gap-soft:#3A2220; color-scheme:dark}}
 :root[data-theme="dark"]{
   --paper:#101614; --sheet:#171E1B; --ink:#E6EBE8; --muted:#9AA7A1; --rule:#2B3531;
-  --accent:#8EA2FF; --accent-soft:#1E2747; --jev:#E9A54B; --jev-soft:#33261A;
-  --good:#5CC48F; --warn:#E9A54B; --gap:#F08C80; --gap-soft:#3A2220; color-scheme:dark}
+  --accent:#8EA2FF; --accent-soft:#1E2747; --amber:#E9A54B; --amber-soft:#33261A;
+  --good:#5CC48F; --good-soft:#18301F; --gap:#F08C80; --gap-soft:#3A2220; color-scheme:dark}
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 var(--body)}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 var(--body)}
 a{color:var(--accent)}
 [hidden]{display:none!important}
-.wrap{max-width:1680px;margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
-.read{max-width:68ch}
-h1,h2,h3{font-family:var(--display);font-weight:500;text-wrap:balance;margin:0}
-h1{font-size:clamp(2rem,4.6vw,3.25rem);line-height:1.08;letter-spacing:-.01em}
-h2{font-size:clamp(1.5rem,2.6vw,2rem);line-height:1.15}
-h3{font-size:1.2rem;line-height:1.25}
-.eyebrow{font:500 .75rem/1 var(--body);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
-.mono,.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
-button,input,textarea,select{font:inherit;color:inherit}
+.wrap{max-width:1680px;margin:0 auto;padding-inline:clamp(16px,3vw,40px)}
+h1,h2,h3{font-family:var(--display);font-weight:600;text-wrap:balance;margin:0}
+h1{font-size:clamp(2rem,4vw,3rem);line-height:1.08}
+h2{font-size:clamp(1.6rem,2.4vw,2.1rem);line-height:1.15}
+h3{font:600 1rem/1.3 var(--body)}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+button,input,textarea{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .btn{display:inline-flex;align-items:center;gap:.4em;border:1px solid var(--ink);background:var(--ink);color:var(--paper);
-  padding:.55em 1em;border-radius:var(--r);cursor:pointer;font-weight:500}
+  padding:.5em 1em;border-radius:var(--r);cursor:pointer;font-weight:500}
 .btn.secondary{background:transparent;color:var(--ink)}
 .btn:disabled{opacity:.45;cursor:not-allowed}
-.btn.jev{background:var(--jev);border-color:var(--jev);color:#fff}
+.btn.amber{background:var(--amber);border-color:var(--amber);color:#fff}
+.chip{border:1px solid var(--rule);background:var(--sheet);border-radius:999px;padding:.2em .75em;font-size:.85rem}
+.none{color:var(--muted);font-size:.92rem;margin:0}
+.busy{color:var(--muted);font-style:italic;margin:0}
+.err{color:var(--gap);margin:0}
+.lede{color:var(--muted);margin:6px 0 0;max-width:72ch}
 
-/* header */
-header.top{border-bottom:1px solid var(--rule);background:var(--sheet)}
-header.top .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between;padding-block:14px}
-.who{display:flex;flex-direction:column;gap:2px}
+/* header + access */
+header.top{border-bottom:1px solid var(--rule);background:var(--sheet);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+header.top .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;align-items:center;justify-content:space-between;padding-block:10px}
 .who b{font-weight:600}
-.access{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.access input{width:11em;padding:.45em .6em;border:1px solid var(--rule);border-radius:var(--r);background:var(--paper)}
+.who span{color:var(--muted);font-size:.9rem;margin-left:.6em}
+.access{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:4px 8px;border-radius:var(--r);border:1px solid transparent}
+.access label{font-size:.9rem;font-weight:500}
+.access input{width:10em;padding:.4em .6em;border:1px solid var(--rule);border-radius:var(--r);background:var(--paper)}
 .access .state{font-size:.85rem;color:var(--muted)}
 .access .state.ok{color:var(--good)}
+.access.nudge{border-color:var(--gap);background:var(--gap-soft)}
+.access.nudge .state{color:var(--gap);font-weight:600}
+@media (prefers-reduced-motion:no-preference){.access.nudge{animation:blink .45s ease-in-out 4}}
+@keyframes blink{50%{background:transparent;border-color:transparent}}
 
-section{padding-block:clamp(28px,4vw,44px);border-bottom:1px solid var(--rule)}
-section > .wrap > header, header.sub{display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
-.lede{color:var(--muted);max-width:62ch;margin:0}
+section{padding-block:clamp(24px,3.5vw,40px);border-bottom:1px solid var(--rule)}
+section > .wrap > header{margin-bottom:16px}
 
 /* hero */
-.hero h1{max-width:28ch;margin-top:8px}
-.answer{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:14px 28px;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))}
-.answer li{display:grid;grid-template-columns:2.2em 1fr;gap:4px;font-size:1.08rem}
-.answer li span{font-family:var(--mono);color:var(--accent);padding-top:.15em}
-.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-.chip{border:1px solid var(--rule);background:var(--sheet);border-radius:999px;padding:.25em .75em;font-size:.85rem}
+.hero h1{max-width:30ch}
+.answer{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:10px 28px;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+.answer li{display:grid;grid-template-columns:1.8em 1fr;font-size:1.05rem}
+.answer li span{font-family:var(--mono);color:var(--accent)}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 
 /* simulator */
-.sim{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px;align-items:start}
-@media (max-width:860px){.sim{grid-template-columns:1fr}}
-.panel{background:var(--sheet);border:1px solid var(--rule);border-radius:var(--r);padding:20px}
-.presets{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
-.preset{border:1px solid var(--rule);background:var(--paper);border-radius:var(--r);padding:.4em .7em;cursor:pointer;font-size:.9rem;text-align:left}
+.sim{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:24px;align-items:start}
+@media (max-width:900px){.sim{grid-template-columns:1fr}}
+.panel{background:var(--sheet);border:1px solid var(--rule);border-radius:var(--r);padding:18px}
+.presets{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.preset{border:1px solid var(--rule);background:var(--paper);border-radius:var(--r);padding:.35em .7em;cursor:pointer;font-size:.9rem}
 .preset[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
-.field{display:flex;flex-direction:column;gap:4px;margin-bottom:14px}
-.field label{font-weight:500;font-size:.9rem}
-.field input[type=text],.field textarea{width:100%;padding:.5em .6em;border:1px solid var(--rule);border-radius:var(--r);background:var(--paper)}
-.field textarea{min-height:5.5em;resize:vertical}
-.slider{margin-bottom:16px}
-.slider .row{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
-.slider .row b{font-weight:500;font-size:.95rem}
-.slider input[type=range]{width:100%;accent-color:var(--accent);margin:6px 0 2px}
-.slider .ends{display:flex;justify-content:space-between;gap:12px;font-size:.75rem;color:var(--muted)}
+.slider{margin-bottom:12px}
+.slider .row{display:flex;justify-content:space-between;gap:8px;font-size:.92rem}
+.slider .row b{font-weight:500}
+.slider input[type=range]{width:100%;accent-color:var(--accent);margin:4px 0 0}
+.slider .ends{display:flex;justify-content:space-between;gap:12px;font-size:.74rem;color:var(--muted)}
 .slider .ends span:last-child{text-align:right}
+details.proj summary{cursor:pointer;font-size:.9rem;color:var(--muted);margin-top:6px}
+.field{display:flex;flex-direction:column;gap:4px;margin-top:10px}
+.field label{font-weight:500;font-size:.88rem}
+.field input,.field textarea{width:100%;padding:.45em .6em;border:1px solid var(--rule);border-radius:var(--r);background:var(--paper)}
+.field textarea{min-height:4.5em;resize:vertical}
 
-.results{display:flex;flex-direction:column;gap:16px;min-width:0}
-.cards{display:grid;gap:10px}
-.case{border:1px solid var(--rule);border-radius:var(--r);padding:12px 14px;background:var(--sheet)}
-.case .meta{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:.78rem;color:var(--muted);margin-bottom:4px}
-.case .kind{border:1px solid var(--rule);border-radius:999px;padding:0 .5em}
-.case .match{margin-left:auto;font-family:var(--mono)}
-.case p{margin:0}
-.gaps{display:grid;gap:8px}
-.gapi{background:var(--gap-soft);border-left:3px solid var(--gap);padding:8px 12px;border-radius:0 var(--r) var(--r) 0;font-size:.92rem}
-.gapi b{color:var(--gap);font-weight:600}
-.none{color:var(--muted);font-size:.92rem;margin:0}
-
-.jevbox{border:1px solid var(--jev);background:var(--jev-soft);border-radius:var(--r);padding:16px}
-.jevhead{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between;margin-bottom:12px}
-.jevhead .src{font-size:.8rem;color:var(--muted)}
-.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.results{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:16px;align-items:start}
+@media (max-width:1200px){.results{grid-template-columns:1fr}}
+.assess{border:1px solid var(--amber);background:var(--amber-soft);border-radius:var(--r);padding:16px}
+.assess .head{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between;margin-bottom:12px}
+.assess .src{font-size:.8rem;color:var(--muted);margin:0 0 8px}
+.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 @media (max-width:560px){.metrics{grid-template-columns:1fr}}
-.metric{background:var(--sheet);border-radius:var(--r);padding:12px}
-.metric .v{font:500 1.9rem/1.1 var(--mono);color:var(--jev)}
-.metric .l{font-size:.82rem;color:var(--muted)}
-.bars{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;align-items:end;height:90px;margin-top:14px}
-.bar{background:var(--jev);border-radius:3px 3px 0 0;min-height:2px;opacity:.35}
+.metric{background:var(--sheet);border-radius:var(--r);padding:10px 12px}
+.metric .v{font:500 1.8rem/1.1 var(--mono);color:var(--amber)}
+.metric .l{font-size:.8rem;color:var(--muted)}
+.bars{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;align-items:end;height:70px;margin-top:12px}
+.bar{background:var(--amber);border-radius:3px 3px 0 0;min-height:2px;opacity:.35}
 .bar.top{opacity:1}
 .barlabels{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;font-size:.72rem;color:var(--muted);text-align:center;margin-top:4px}
-.riskline{margin-top:12px;font-size:.92rem}
-.disclaim{font-size:.8rem;color:var(--muted);margin-top:12px}
-details.asked{margin-top:10px;font-size:.85rem}
-details.asked pre{max-height:320px;overflow:auto;background:var(--sheet);border:1px solid var(--rule);border-radius:var(--r);padding:10px;font:12px/1.45 var(--mono);white-space:pre-wrap;word-break:break-word}
+.riskline{margin:10px 0 0;font-size:.9rem}
+.disclaim{font-size:.78rem;color:var(--muted);margin:10px 0 0}
+details.asked{margin-top:8px;font-size:.82rem}
+details.asked summary{cursor:pointer;color:var(--muted)}
+details.asked pre{max-height:300px;overflow:auto;background:var(--sheet);border:1px solid var(--rule);border-radius:var(--r);padding:10px;font:12px/1.45 var(--mono);white-space:pre-wrap;word-break:break-word}
 
-/* claude */
-.tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--rule);margin-bottom:16px}
-.tab{border:0;background:none;padding:.6em .9em;cursor:pointer;border-bottom:2px solid transparent;color:var(--muted);font-weight:500}
+.side{display:flex;flex-direction:column;gap:16px;min-width:0}
+.side h3{margin-bottom:8px}
+.ramp{display:flex;flex-direction:column;gap:6px}
+.ramp details{background:var(--gap-soft);border-left:3px solid var(--gap);border-radius:0 var(--r) var(--r) 0;padding:6px 10px;font-size:.9rem}
+.ramp summary{cursor:pointer;color:var(--gap);font-weight:600}
+.ramp p{margin:6px 0 0}
+.evi{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}
+.evi li{display:flex;justify-content:space-between;gap:12px;align-items:baseline;border-bottom:1px solid var(--rule);padding-bottom:6px}
+.evi .num{font-size:.8rem;color:var(--muted);white-space:nowrap}
+
+/* ask */
+.tabs{display:flex;flex-wrap:wrap;gap:4px;border-bottom:1px solid var(--rule);margin-bottom:12px}
+.tab{border:0;background:none;padding:.5em .9em;cursor:pointer;border-bottom:2px solid transparent;color:var(--muted);font-weight:500}
 .tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
-.out{background:var(--sheet);border:1px solid var(--rule);border-radius:var(--r);padding:18px 20px;min-height:6em}
-.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,560px),1fr));gap:40px;align-items:start}
-.two > div{min-width:0}
-.gapi .mit{display:block;color:var(--ink);margin-top:4px}
+.askrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.askrow input{flex:1 1 320px;min-width:0;padding:.5em .7em;border:1px solid var(--rule);border-radius:var(--r);background:var(--sheet)}
+.suggest{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.suggest button{cursor:pointer}
+.out{background:var(--sheet);border:1px solid var(--rule);border-radius:var(--r);padding:16px 20px;margin-top:12px;max-width:110ch}
 .out p{margin:.5em 0}.out ul,.out ol{margin:.4em 0;padding-left:1.3em}.out h4{font:600 1rem var(--body);margin:1em 0 .3em}
 .out .cite{font-family:var(--mono);font-size:.8em;background:var(--accent-soft);border-radius:3px;padding:0 .3em;text-decoration:none}
-.busy{color:var(--muted);font-style:italic}
-.err{color:var(--gap)}
-.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:12px 0}
 
-/* fit map */
-.fit{display:grid;gap:0 32px;grid-template-columns:repeat(auto-fit,minmax(min(100%,480px),1fr))}
-.fitrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 16px;padding:12px 0;border-bottom:1px solid var(--rule)}
-.fitrow .req{font-weight:500}
-.fitrow .note{grid-column:1 / -1;color:var(--muted);font-size:.92rem}
-.pill{font-size:.75rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;border-radius:999px;padding:.2em .7em;align-self:start}
-.pill.strong{background:color-mix(in srgb,var(--good) 15%,transparent);color:var(--good)}
-.pill.medium{background:var(--jev-soft);color:var(--warn)}
-.pill.gap{background:var(--gap-soft);color:var(--gap)}
-.caselinks{grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:6px}
-.caselinks a{font:.8rem var(--mono)}
+/* fit */
+.cols3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:start}
+@media (max-width:900px){.cols3{grid-template-columns:1fr}}
+.col h3{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--accent)}
+.box{background:var(--sheet);border:1px solid var(--rule);border-radius:var(--r);padding:12px 14px;margin-bottom:10px}
+.box b{display:block;font-weight:600}
+.box p{margin:4px 0 0;color:var(--muted);font-size:.9rem}
+.box .links{display:flex;flex-wrap:wrap;gap:4px 10px;margin-top:6px;font-size:.82rem}
+.col.strong .box{border-top:3px solid var(--good)} .col.strong .dot{background:var(--good)}
+.col.medium .box{border-top:3px solid var(--amber)} .col.medium .dot{background:var(--amber)}
+.col.gap .box{border-top:3px solid var(--gap)} .col.gap .dot{background:var(--gap)}
 
 /* record */
-.record{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:12px}
-.record .case{scroll-margin-top:24px}
-.record .case:target{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
-.record ul{margin:.5em 0 0;padding-left:1.1em;font-size:.92rem}
-.timeline{margin-top:20px;display:grid;gap:4px 32px;font-size:.9rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,520px),1fr))}
-.timeline div{display:grid;grid-template-columns:9.5em minmax(0,1fr);gap:12px}
-.timeline .when{font-family:var(--mono);color:var(--muted);font-size:.85rem}
+.case{background:var(--sheet);border:1px solid var(--rule);border-radius:var(--r);margin-bottom:8px;scroll-margin-top:80px}
+.case summary{cursor:pointer;padding:10px 14px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.case summary b{font-weight:600}
+.case summary span{font-size:.8rem;color:var(--muted)}
+.case .body{padding:0 14px 12px;font-size:.92rem}
+.case .body p{margin:0}
+.case .body ul{margin:.4em 0 0;padding-left:1.1em;color:var(--muted)}
+.case:target{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
 
-/* next step */
-.kinds{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
-#draftText{width:100%;min-height:16em;padding:14px;border:1px solid var(--rule);border-radius:var(--r);background:var(--sheet);font:15px/1.55 var(--body)}
-.contact{margin-top:14px;font-size:.92rem}
-.contact .mono{user-select:all}
-
-.built{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:20px}
-.built div{border-top:2px solid var(--ink);padding-top:10px}
-.built p{margin:.4em 0 0;color:var(--muted);font-size:.95rem}
-footer{padding-block:32px;color:var(--muted);font-size:.85rem}
+/* built */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px}
+.stat{border-top:2px solid var(--ink);padding-top:8px}
+.stat .v{font:600 2rem/1.1 var(--display)}
+.stat .l{color:var(--muted);font-size:.88rem}
+footer{padding-block:24px;color:var(--muted);font-size:.82rem}
 @media (prefers-reduced-motion:no-preference){.bar{transition:height .35s ease}}
 </style>
 </head>
 <body>
 <header class="top">
   <div class="wrap">
-    <div class="who">
-      <b>Alexey Malashonak, CFA, FRM, EMBA</b>
-      <span class="eyebrow">Prepared for LEVA · Product Architect</span>
-    </div>
+    <div class="who"><b>Alexey Malashonak, CFA, FRM, EMBA</b><span>for LEVA · Product Architect</span></div>
     <form class="access" id="accessForm" autocomplete="off">
-      <label for="accessCode" class="eyebrow">Access code</label>
-      <input id="accessCode" type="password" placeholder="for live AI" aria-describedby="accessState">
+      <label for="accessCode">Access code</label>
+      <input id="accessCode" type="password" placeholder="unlocks live AI">
       <button class="btn secondary" type="submit">Unlock</button>
-      <span id="accessState" class="state">Live AI locked; preset results still work.</span>
+      <span id="accessState" class="state" role="status">Saved results work without a code.</span>
     </form>
   </div>
 </header>
@@ -186,7 +189,6 @@ footer{padding-block:32px;color:var(--muted);font-size:.85rem}
 <main>
   <section class="hero">
     <div class="wrap">
-      <span class="eyebrow">One question</span>
       <h1 id="question">Why hire Alexey as LEVA's Product Architect?</h1>
       <ol class="answer" id="answer"></ol>
       <div class="facts" id="facts"></div>
@@ -196,137 +198,97 @@ footer{padding-block:32px;color:var(--muted);font-size:.85rem}
   <section id="simulator">
     <div class="wrap">
       <header>
-        <span class="eyebrow">Project simulator</span>
-        <h2>Describe a project you might give him</h2>
-        <p class="lede">Pick a project from LEVA's roadmap or set the five characteristics yourself. The closest evidence and the ramp-up areas update as you move a slider. A fast judgment model then assesses delivery; Claude handles the longer analysis below.</p>
+        <h2>Test him on your roadmap</h2>
+        <p class="lede">Pick a project, or move the sliders. The assessment, ramp-up areas and evidence follow.</p>
       </header>
       <div class="sim">
-        <div class="panel" id="controls">
-          <div class="presets" id="presets" role="group" aria-label="Projects from LEVA's roadmap"></div>
-          <div class="field">
-            <label for="projTitle">Project</label>
-            <input id="projTitle" type="text" maxlength="120">
-          </div>
-          <div class="field">
-            <label for="projBrief">Brief</label>
-            <textarea id="projBrief" maxlength="600"></textarea>
-          </div>
+        <div class="panel">
+          <div class="presets" id="presets" role="group" aria-label="Projects"></div>
           <div id="sliders"></div>
+          <details class="proj">
+            <summary>Edit the project description</summary>
+            <div class="field"><label for="projTitle">Project</label><input id="projTitle" type="text" maxlength="120"></div>
+            <div class="field"><label for="projBrief">Brief</label><textarea id="projBrief" maxlength="600"></textarea></div>
+          </details>
         </div>
         <div class="results">
-          <div>
-            <h3>Closest evidence</h3>
-            <div class="cards" id="evidence" aria-live="polite"></div>
-          </div>
-          <div>
-            <h3>Where he would ramp up</h3>
-            <div class="gaps" id="gaps" aria-live="polite"></div>
-          </div>
-          <div class="jevbox" id="jev">
-            <div class="jevhead">
+          <div class="assess" id="assess">
+            <div class="head">
               <h3>Delivery assessment</h3>
-              <button class="btn jev" id="jevRun" type="button">Assess this project</button>
+              <button class="btn amber" id="assessRun" type="button">Assess this project</button>
             </div>
-            <div id="jevBody"><p class="none">Choose a preset to see a saved result, or press Assess.</p></div>
-            <p class="disclaim">A fast judgment model scores the project against the evidence on this page and returns probabilities, not text. It judges the record Alexey presents, including the ramp-up areas and their mitigations; it is not a forecast.</p>
-            <details class="asked" id="jevAsked" hidden><summary>Exactly what the model was asked</summary><pre id="jevAskedPre"></pre></details>
+            <div id="assessBody"><p class="none">Pick a project to see its saved assessment.</p></div>
+            <p class="disclaim">A fast AI judgment model scores the project against the record on this page. A judgment, not a forecast.</p>
+            <details class="asked" id="asked" hidden><summary>Exactly what the model was asked</summary><pre id="askedPre"></pre></details>
+          </div>
+          <div class="side">
+            <div><h3>Where he would ramp up</h3><div class="ramp" id="ramp" aria-live="polite"></div></div>
+            <div><h3>Closest evidence</h3><ul class="evi" id="evidence" aria-live="polite"></ul></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="work">
-    <div class="wrap two">
-      <div id="claude">
-      <header class="sub">
-        <span class="eyebrow">Deeper analysis · Claude</span>
-        <h2>Plan it, question it, test the numbers</h2>
-        <p class="lede">Claude answers only from the material on this page and cites the cases it uses. It works on the project currently set in the simulator.</p>
+  <section id="ask">
+    <div class="wrap">
+      <header>
+        <h2>Ask about Alexey</h2>
+        <p class="lede">Claude answers from his record only and links the cases it uses.</p>
       </header>
       <div class="tabs" role="tablist">
-        <button class="tab" role="tab" aria-selected="true" data-task="plan">30/60/90 plan</button>
-        <button class="tab" role="tab" aria-selected="false" data-task="ask">Ask about Alexey</button>
+        <button class="tab" role="tab" aria-selected="true" data-task="ask">Ask a question</button>
+        <button class="tab" role="tab" aria-selected="false" data-task="plan">30/60/90 plan</button>
         <button class="tab" role="tab" aria-selected="false" data-task="crossexam">Challenge the assessment</button>
       </div>
-      <div class="field" id="askField" hidden>
-        <label for="askText">Your question</label>
-        <input id="askText" type="text" maxlength="400" placeholder="e.g. What has he built that is closest to KYC onboarding?">
+      <div id="askUi">
+        <div class="suggest" id="suggest"></div>
+        <div class="askrow">
+          <input id="askText" type="text" maxlength="400" aria-label="Your question" placeholder="Type a question about Alexey">
+          <button class="btn" id="askRun" type="button">Ask</button>
+        </div>
       </div>
-      <div class="actions">
-        <button class="btn" id="claudeRun" type="button">Write the plan</button>
-        <span id="claudeHint" class="none"></span>
+      <div id="taskUi" hidden>
+        <p class="none" id="taskHint"></p>
+        <div class="askrow" style="margin-top:8px"><button class="btn" id="taskRun" type="button"></button></div>
       </div>
-      <div class="out" id="claudeOut"><p class="none">Output appears here.</p></div>
-    </div>
-      <div id="next">
-      <header class="sub">
-        <span class="eyebrow">Next step</span>
-        <h2>Draft it here, send it yourself</h2>
-        <p class="lede">Claude drafts the message from LEVA's side, using the project you explored. Edit it, copy it, and send it from your own mail.</p>
-      </header>
-      <div class="kinds" role="group" aria-label="Kind of draft">
-        <button class="preset" data-kind="invite" aria-pressed="true">Interview invitation</button>
-        <button class="preset" data-kind="references" aria-pressed="false">Request references</button>
-        <button class="preset" data-kind="offer" aria-pressed="false">Draft offer letter</button>
-      </div>
-      <div class="field read">
-        <label for="draftNotes">Anything to include (optional)</label>
-        <input id="draftNotes" type="text" maxlength="300" placeholder="e.g. propose Thursday or Friday next week">
-      </div>
-      <div class="actions">
-        <button class="btn" id="draftRun" type="button">Draft it</button>
-        <button class="btn secondary" id="draftCopy" type="button" disabled>Copy</button>
-        <span id="draftHint" class="none"></span>
-      </div>
-      <textarea id="draftText" aria-label="Draft" placeholder="The draft appears here and you can edit it."></textarea>
-      <p class="contact">Alexey's email: <span class="mono" id="email"></span> · <a id="linkedin" href="#" target="_blank" rel="noopener">LinkedIn</a></p>
-    </div>
+      <div class="out" id="out" hidden></div>
     </div>
   </section>
 
   <section id="fit">
     <div class="wrap">
       <header>
-        <span class="eyebrow">The job spec, line by line</span>
-        <h2>Fit map</h2>
-        <p class="lede">Each requirement from the posting, with the evidence for it and an honest strength rating.</p>
+        <h2>Fit to the Product Architect role at LEVA</h2>
+        <p class="lede">Each requirement from the <a id="postingLink" href="#" target="_blank" rel="noopener">job posting</a>, matched to his record. About LEVA: <a href="https://leva.pe" target="_blank" rel="noopener">leva.pe</a>.</p>
       </header>
-      <div class="fit" id="fitMap"></div>
+      <div class="cols3" id="fitCols"></div>
     </div>
   </section>
 
   <section id="record">
     <div class="wrap">
       <header>
-        <span class="eyebrow">The record</span>
         <h2>What he has built</h2>
-        <p class="lede">Every case the simulator and the AI draw on. Employment, own builds, pro bono work and education are labelled as such.</p>
+        <p class="lede">Click a title for the detail. <a id="linkedin" href="#" target="_blank" rel="noopener">Full career on LinkedIn</a>.</p>
       </header>
-      <div class="record" id="cases"></div>
-      <div class="timeline" id="timeline"></div>
+      <div class="cols3" id="groups"></div>
     </div>
   </section>
 
   <section id="built">
     <div class="wrap">
       <header>
-        <span class="eyebrow">How this page was built</span>
-        <h2>The page is the work sample</h2>
-        <p class="lede">The posting asks for someone who prototypes and builds with AI coding and agentic tools. This page was built that way in about a day.</p>
+        <h2>How this page was built</h2>
+        <p class="lede">Built the way the role describes: Claude Code for the content, AI prompts and this page; OpenAI Codex for the proxy and tests from written briefs, every diff reviewed. Times are from the git history. <a href="https://github.com/Amarows/hire-alexey" target="_blank" rel="noopener">Source and tests</a>.</p>
       </header>
-      <div class="built">
-        <div><h3>Division of labour</h3><p>Claude Code wrote the content, the assessment questions, the prompts and this page. OpenAI Codex built the proxy, the matcher and the tests from written briefs. Every Codex diff was reviewed and its acceptance checks run before merge.</p></div>
-        <div><h3>Judgment, not arithmetic</h3><p>Plain code picks the evidence and the ramp-up areas. A fast judgment model only judges, and the page shows exactly what it was asked. Claude writes, cites cases, and does not invent numbers.</p></div>
-        <div><h3>Keys stay server-side</h3><p>A small Cloudflare Worker holds the API keys and checks the access code. The page itself has no secrets and only public facts about Alexey.</p></div>
-        <div><h3>Open to inspection</h3><p>Source, briefs and tests: <a href="https://github.com/Amarows/hire-alexey" target="_blank" rel="noopener">github.com/Amarows/hire-alexey</a>.</p></div>
-      </div>
+      <div class="stats" id="stats"></div>
     </div>
   </section>
 </main>
 
-<footer><div class="wrap">Public facts only. LEVA's context is taken from leva.pe and the public job posting. This is Alexey's own page, not affiliated with LEVA.</div></footer>
+<footer><div class="wrap">Public facts only. LEVA's context is from leva.pe and the public job posting. Alexey's own page; not affiliated with LEVA. Contact: <span id="email"></span></div></footer>
 
-<script type="module" src="../js/app.js"></script>
+<script type="module" src="../js/app.js?v=4"></script>
 </body>
 </html>

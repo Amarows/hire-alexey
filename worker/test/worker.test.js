@@ -95,7 +95,7 @@ describe("worker routes", () => {
     expect(outgoing.system[1].text).not.toContain('"tags"');
   });
 
-  it("maps Claude refusal and rejects invalid draft kind", async () => {
+  it("maps Claude refusal and rejects the removed draft task", async () => {
     vi.spyOn(globalThis, "fetch").mockResolvedValue(claude("refusal"));
     const refusal = await worker.fetch(request("/api/claude", { role: "leva", task: "ask", question: "Why?" }), env);
     expect(refusal.status).toBe(200);

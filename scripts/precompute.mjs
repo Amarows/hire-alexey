@@ -22,7 +22,7 @@ for (let index = 0; index < role.presets.length; index += 1) {
   const response = await fetch(new URL("/api/jev", worker), {
     method: "POST",
     headers: { "content-type": "application/json", "x-access-code": process.env.ACCESS_CODE },
-    body: JSON.stringify({ role: roleId, project: { title: preset.title, brief: preset.brief }, sliders: preset.sliders }),
+    body: JSON.stringify({ role: roleId, preset: preset.id, project: { title: preset.title, brief: preset.brief }, sliders: preset.sliders }),
   });
   if (!response.ok) throw new Error(`Preset ${preset.id} failed with HTTP ${response.status}: ${await response.text()}`);
   const data = await response.json();

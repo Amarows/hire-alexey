@@ -58,7 +58,7 @@ export function validate(profile, roles) {
   const publicContent = value => Array.isArray(value)
     ? value.map(publicContent)
     : value && typeof value === 'object'
-      ? Object.fromEntries(Object.entries(value).filter(([key]) => key !== '_comment' && key !== 'source').map(([key, child]) => [key, publicContent(child)]))
+      ? Object.fromEntries(Object.entries(value).filter(([key]) => key !== '_comment' && key !== 'source' && !key.endsWith('_url')).map(([key, child]) => [key, publicContent(child)]))
       : value;
   const serialized = JSON.stringify(publicContent({ profile, roles }));
   if (phoneLike.test(serialized)) errors.push('content matches a phone-number-like pattern');

@@ -4,7 +4,7 @@ import leva from "../../docs/content/roles/leva.json";
 import { buildJevState, deriveJev, describeSliders } from "../../docs/js/matcher.js";
 import {
   CLAUDE_EFFORT, CLAUDE_MAX_TOKENS, CLAUDE_MODEL, JEV_MODEL, JEV_QUESTIONS,
-  JEV_QUESTIONS_VERSION, OPERATING_ASSUMPTION, PROTOTYPE_WEEKS, SYSTEM_BASE, TASKS,
+  JEV_QUESTIONS_VERSION, OPERATING_ASSUMPTION, BUILD_SPEED, PROTOTYPE_WEEKS, SYSTEM_BASE, TASKS,
 } from "./prompts.js";
 
 const ROLES = { leva };
@@ -71,8 +71,7 @@ async function parseJson(request) {
 function viewerText(body, task) {
   const fields = task === "plan" ? [body.project?.title, body.project?.brief]
     : task === "ask" ? [body.question]
-      : task === "crossexam" ? [body.project?.title, body.project?.brief]
-        : [body.project?.title, body.project?.brief, body.notes];
+      : [body.project?.title, body.project?.brief];
   return fields.map((value) => typeof value === "string" ? value.trim() : "").join("\n");
 }
 
@@ -122,7 +121,9 @@ async function fetchJev(state, env) {
 
 async function handleJev(body, env) {
   if (!ROLES[body.role]) return json({ error: "unknown_role", message: "That role is not available." }, 404);
-  const state = buildJevState(profile, ROLES[body.role], body.project, body.sliders, OPERATING_ASSUMPTION);
+  const preset = ROLES[body.role].presets.find((p) => p.id === body.preset);
+  const curated = Array.isArray(preset?.evidence) ? preset.evidence : [];
+  const state = { ...buildJevState(profile, ROLES[body.role], body.project, body.sliders, OPERATING_ASSUMPTION, curated), build_speed: BUILD_SPEED };
   const result = await fetchJev(state, env);
   if (!result) return json({ error: "jev_unavailable", message: "Jev is temporarily unavailable." }, 502);
   const answers = result.data.answers ?? {};
@@ -144,9 +145,6 @@ async function handleClaude(body, env) {
   if (!ROLES[body.role]) return json({ error: "unknown_role", message: "That role is not available." }, 404);
   const task = body.task;
   if (!Object.hasOwn(TASKS, task)) return json({ error: "invalid_task", message: "That task is not available." }, 400);
-  if (task === "draft" && !["invite", "references", "offer"].includes(body.kind)) {
-    return json({ error: "invalid_kind", message: "That draft kind is not available." }, 400);
-  }
   const viewer = viewerText(body, task);
   if (viewer.length > TASKS[task].maxInput) return json({ error: "input_too_large", message: "The supplied text is too long." }, 413);
   const role = ROLES[body.role];

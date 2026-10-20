@@ -184,7 +184,8 @@
         "build": 35,
         "amb": 50,
         "stake": 95
-      }
+      },
+      "group": "regulated"
     },
     {
       "id": "ubs-redesign",
@@ -208,7 +209,8 @@
         "build": 40,
         "amb": 35,
         "stake": 80
-      }
+      },
+      "group": "regulated"
     },
     {
       "id": "previorisk",
@@ -232,7 +234,8 @@
         "build": 70,
         "amb": 70,
         "stake": 70
-      }
+      },
+      "group": "regulated"
     },
     {
       "id": "raiffeisen",
@@ -254,7 +257,8 @@
         "build": 80,
         "amb": 40,
         "stake": 35
-      }
+      },
+      "group": "models"
     },
     {
       "id": "vostok",
@@ -276,7 +280,8 @@
         "build": 85,
         "amb": 45,
         "stake": 30
-      }
+      },
+      "group": "models"
     },
     {
       "id": "amber",
@@ -300,7 +305,8 @@
         "build": 100,
         "amb": 60,
         "stake": 15
-      }
+      },
+      "group": "ai"
     },
     {
       "id": "jev-research",
@@ -324,7 +330,8 @@
         "build": 90,
         "amb": 75,
         "stake": 10
-      }
+      },
+      "group": "ai"
     },
     {
       "id": "cfa-cv",
@@ -348,7 +355,8 @@
         "build": 90,
         "amb": 80,
         "stake": 45
-      }
+      },
+      "group": "ai"
     },
     {
       "id": "semantic-engine",
@@ -372,7 +380,8 @@
         "build": 95,
         "amb": 55,
         "stake": 40
-      }
+      },
+      "group": "ai"
     },
     {
       "id": "ai-operating-model",
@@ -396,7 +405,8 @@
         "build": 95,
         "amb": 65,
         "stake": 25
-      }
+      },
+      "group": "ai"
     },
     {
       "id": "thesis",
@@ -420,29 +430,8 @@
         "build": 80,
         "amb": 70,
         "stake": 55
-      }
-    },
-    {
-      "id": "boxing",
-      "title": "Digital presence for a Swiss sports club (pro bono)",
-      "period": "2025–2026",
-      "kind": "pro bono",
-      "headline": "Took a non-profit club from zero web presence to an indexed, legally compliant bilingual site at about CHF 12 a year.",
-      "points": [
-        "Rejected CMS and paid hosting deliberately: lowest viable cost for the client's reality.",
-        "Domain registered to the club's legal entity; photo consent under Swiss data protection law."
-      ],
-      "proves": [
-        "pragmatic build decisions",
-        "non-technical stakeholders in German"
-      ],
-      "tags": {
-        "reg": 30,
-        "dom": 70,
-        "build": 90,
-        "amb": 60,
-        "stake": 40
-      }
+      },
+      "group": "models"
     }
   ],
   "gaps": [
@@ -509,5 +498,10 @@
       "weight": 0.4,
       "mitigation": "Led a 15-developer team to market in seven months at a software company and owned a product used by 600+ people across three regions."
     }
-  ]
+  ],
+  "groups": {
+    "regulated": "Regulated finance products",
+    "models": "Risk & quant models",
+    "ai": "AI systems, built hands-on"
+  }
 }

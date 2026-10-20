@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { DIMS, activeGaps, buildJevState, clampSliders, deriveJev, matchCases, similarity } from '../docs/js/matcher.js';
+import { DIMS, activeGaps, buildJevState, clampSliders, deriveJev, matchCases, pickEvidence, similarity } from '../docs/js/matcher.js';
 
 const profile = JSON.parse(await readFile(new URL('../docs/content/profile.json', import.meta.url), 'utf8'));
 const role = JSON.parse(await readFile(new URL('../docs/content/roles/leva.json', import.meta.url), 'utf8'));
@@ -59,4 +59,14 @@ test('buildJevState trims project fields and excludes tags and phone-like data',
   assert.equal(state.operating_assumption, 'Assume no vendor constraints');
   assert.equal(JSON.stringify(state).includes('"tags"'), false);
   assert.equal(/\+?\d[\d\s]{8,}\d/.test(JSON.stringify(state)), false);
+});
+
+test('pickEvidence puts curated preset cases first and fills without duplicates', () => {
+  const voting = role.presets.find(p => p.id === 'voting');
+  const picked = pickEvidence(profile, voting.sliders, 5, voting.evidence);
+  assert.deepEqual(picked.slice(0, 3).map(p => p.case.id), voting.evidence);
+  assert.ok(picked.slice(0, 3).every(p => p.score === null));
+  assert.equal(new Set(picked.map(p => p.case.id)).size, 5);
+  assert.deepEqual(pickEvidence(profile, voting.sliders, 3, ['no-such-case']).map(p => p.case.id),
+    matchCases(profile, voting.sliders, 3).map(m => m.case.id));
 });
