@@ -1,0 +1,80 @@
+{
+  "_comment": "Role-specific content. Public sources only: the job posting (LinkedIn 4476338211, via ambi.scout) and leva.pe, both read 2026-10-19.",
+  "id": "leva",
+  "company": "LEVA",
+  "role": "Product Architect",
+  "question": "Why hire Alexey as LEVA's Product Architect?",
+  "answer": [
+    "He has turned legal and financial contract terms into software that computes, and shipped it to market in seven months.",
+    "He knows from nine years inside a bank which regulatory requirements shape the product and which are paperwork.",
+    "He builds with AI agents today, under tests and controls. This page is one example."
+  ],
+  "company_context": {
+    "what": "Co-investment syndication infrastructure: deal managers set up a vehicle, invite their investor network, collect commitments, close, and administer the portfolio to exit.",
+    "structure": "A contractual partnership without legal personality instead of an SPV; the deal manager holds the shares for the syndicate; a cantonal tax ruling confirms the partnership is not a taxable subject.",
+    "regulation": "Member of the VQF self-regulatory organisation (anti-money-laundering supervision recognised by FINMA).",
+    "modules": ["legal structuring", "KYC/AML onboarding", "pooling of funds and escrow", "data room", "e-signatures", "investor reporting", "tax reports", "follow-on rounds", "CLA conversions", "exit waterfall and distributions", "voting (in development)"],
+    "scale_public": "4,000+ users, 450+ deals, 140+ managing partners, 40+ countries (leva.pe, October 2026).",
+    "source": "https://leva.pe"
+  },
+  "role_context": {
+    "reports_to": "CTO",
+    "summary": "Product-first role: set the roadmap, decide build, buy, partner or not build, hold financial, legal and regulatory complexity (securities, KYC/AML/KYT) and turn it into simple products, redesign processes rather than digitise them, and prototype and build meaningful parts with AI coding and agentic tools. Works alongside a Financial Systems Engineer.",
+    "requirements": [
+      { "id": "r1", "text": "5+ years in product management, product architecture or a technical product role" },
+      { "id": "r2", "text": "Co-designed, built and shipped a regulated financial product" },
+      { "id": "r3", "text": "Understanding of financial products and securities; compliance and legal requirements as product workflows" },
+      { "id": "r4", "text": "Zero to MVP and 1 to 100" },
+      { "id": "r5", "text": "Hands-on with AI-assisted development: research, prototype, code and test" },
+      { "id": "r6", "text": "Comfort with ambiguity; break a vision into shippable steps" },
+      { "id": "r7", "text": "Private markets, tokenisation or on-chain settlement (advantage)" }
+    ],
+    "source": "Job posting, LinkedIn 4476338211"
+  },
+  "fit": [
+    { "req": "r1", "strength": "strong",  "cases": ["ubs-semantic", "ubs-redesign"], "note": "Product Owner and Director at UBS 2022–2026; Development Team Lead before that." },
+    { "req": "r2", "strength": "medium",  "cases": ["previorisk"], "note": "Shipped a regulated CCR/CVA product to market in 2013. Since then regulated work was inside a bank." },
+    { "req": "r3", "strength": "strong",  "cases": ["previorisk", "ubs-redesign", "vostok"], "note": "CFA and FRM; legal agreements built into computation; supervisory reporting for three regulators. KYC/AML flows not yet built." },
+    { "req": "r4", "strength": "strong",  "cases": ["previorisk", "cfa-cv", "ubs-semantic"], "note": "0→1: PrevioRisk, the CFA tool. 1→100: the UBS semantic model, 600+ users." },
+    { "req": "r5", "strength": "strong",  "cases": ["amber", "ai-operating-model", "cfa-cv"], "note": "~35k lines and 288 tests built with AI agents; every diff reviewed; this portal." },
+    { "req": "r6", "strength": "strong",  "cases": ["ubs-redesign", "amber"], "note": "Go-live gates written before code; operating-model redesign rather than report porting." },
+    { "req": "r7", "strength": "gap",     "cases": [], "note": "No private-markets or tokenisation delivery. Deal valuation and cash-flow mechanics are covered (VostokFinance)." }
+  ],
+  "presets": [
+    {
+      "id": "voting",
+      "title": "Co-investor voting",
+      "why": "Listed as in development on leva.pe.",
+      "brief": "Let co-investors in a syndicate vote digitally on deal-manager proposals (follow-on, exit, consent items), with quorum and majority rules from the Partnership Agreement and a legally usable record.",
+      "sliders": { "reg": 45, "dom": 35, "build": 75, "amb": 40, "stake": 60 }
+    },
+    {
+      "id": "kyt",
+      "title": "KYT transaction monitoring",
+      "why": "The job spec names KYC/AML/KYT as product flows.",
+      "brief": "Monitor capital inflows and distributions for AML red flags, route alerts to the compliance analyst with evidence, and keep an audit trail the VQF auditor accepts.",
+      "sliders": { "reg": 85, "dom": 45, "build": 55, "amb": 50, "stake": 80 }
+    },
+    {
+      "id": "eu",
+      "title": "EU jurisdiction expansion",
+      "why": "The job spec mentions expanding licences across jurisdictions.",
+      "brief": "Make the partnership model and onboarding work for an EU jurisdiction: legal structure, tax treatment, licence requirements and product changes.",
+      "sliders": { "reg": 95, "dom": 60, "build": 30, "amb": 75, "stake": 95 }
+    },
+    {
+      "id": "tokenised",
+      "title": "Tokenised syndicate units",
+      "why": "The job spec calls tokenisation and on-chain settlement a strong plus.",
+      "brief": "Represent co-investors' economic rights as DLT-based securities, with transfer rules for secondaries and settlement on-chain.",
+      "sliders": { "reg": 80, "dom": 95, "build": 60, "amb": 90, "stake": 75 }
+    },
+    {
+      "id": "termsheet",
+      "title": "AI term-sheet intake",
+      "why": "Legal structuring is automated today; deal terms still arrive as documents.",
+      "brief": "Read an uploaded term sheet or CLA, propose structured deal terms with the source sentence for each, let the deal manager confirm, and feed the existing structuring flow.",
+      "sliders": { "reg": 40, "dom": 30, "build": 90, "amb": 55, "stake": 45 }
+    }
+  ]
+}

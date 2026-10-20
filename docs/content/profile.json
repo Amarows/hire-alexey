@@ -1,0 +1,252 @@
+{
+  "_comment": "Public facts about Alexey only. Every item must be publishable: CV/LinkedIn level, no client identities, no psychometrics, no pricing, no holdings, no P&L. Pro bono work is never presented as employment.",
+  "name": "Alexey Malashonak",
+  "credentials": "CFA, FRM, EMBA",
+  "location": "Zürich, Switzerland",
+  "permit": "Swiss C permit (permanent residence)",
+  "contact": {
+    "email": "alexey.malashonak@protonmail.ch",
+    "linkedin": "https://www.linkedin.com/in/alexeymalashonak"
+  },
+  "languages": [
+    { "lang": "English", "level": "C1" },
+    { "lang": "German", "level": "B2" },
+    { "lang": "Russian", "level": "C2 (native)" },
+    { "lang": "Ukrainian", "level": "B1" }
+  ],
+  "summary": "Risk, data and product leader with 14+ years in quantitative finance. Nine years at UBS Group Risk Control, ending as Director and Product Owner of the universal semantic data model for 600+ users. Shipped a regulated counterparty-risk product to market in seven months in 2013. Since 2026 builds tested software with AI coding agents under explicit human controls.",
+  "timeline": [
+    { "from": "2026-04", "to": "present", "role": "AI Engineer & Advisor, Risk and Finance", "org": "Independent", "place": "Zürich" },
+    { "from": "2022-02", "to": "2026-01", "role": "Product Owner, Director", "org": "UBS, Group Risk Control", "place": "Zürich" },
+    { "from": "2020-05", "to": "2022-01", "role": "Development Team Lead", "org": "UBS, Group Risk Control", "place": "Zürich" },
+    { "from": "2017-02", "to": "2020-04", "role": "Risk Reporting Specialist (Associate Director → Director)", "org": "UBS, Group Risk Control", "place": "Zürich" },
+    { "from": "2015-02", "to": "2017-01", "role": "Career break: relocation Kyiv → Zürich; CFA charter completed 2017", "org": "", "place": "" },
+    { "from": "2014-03", "to": "2015-02", "role": "Senior Quantitative Analyst", "org": "VostokFinance Group", "place": "Kyiv" },
+    { "from": "2013-03", "to": "2013-10", "role": "Head of Research & Development", "org": "Compono Strategia (PrevioRisk)", "place": "Dubai" },
+    { "from": "2011-06", "to": "2012-11", "role": "Quantitative Analyst / Trader", "org": "SGCM Partners", "place": "Kyiv" },
+    { "from": "2010-05", "to": "2011-06", "role": "Senior Economist, Credit Risk", "org": "Raiffeisen Bank Aval", "place": "Kyiv" }
+  ],
+  "education": [
+    { "what": "Executive MBA", "where": "SBS Swiss Business School", "year": "2026", "note": "Highest thesis grade in the programme (42 students defended)" },
+    { "what": "MA, Quantitative Finance & Economics", "where": "Kyiv School of Economics / University of Houston", "year": "2009" },
+    { "what": "BA, Economics", "where": "Belarusian State University", "year": "2007" },
+    { "what": "CFA Charterholder", "where": "CFA Institute", "year": "2017" },
+    { "what": "Financial Risk Manager (FRM)", "where": "GARP", "year": "2014" }
+  ],
+  "recommendations": [
+    { "quote": "Relentless in building things the right way... forward-thinking mindset is rare... solution-oriented.", "who": "Executive Director, UBS Americas", "source": "LinkedIn recommendation" },
+    { "quote": "Extremely sharp. Ability to grasp new concepts and find solutions is truly impressive.", "who": "Colleague at UBS, CFA", "source": "LinkedIn recommendation" }
+  ],
+  "dimensions": {
+    "_comment": "The five project characteristics the viewer controls. 0 = left label, 100 = right label.",
+    "reg":   { "label": "Regulatory depth",      "left": "No regulatory touchpoint",        "right": "New licence or jurisdiction" },
+    "dom":   { "label": "Domain distance",       "left": "Core finance & risk mechanics",   "right": "New ground: tokenisation, on-chain" },
+    "build": { "label": "Hands-on build share",  "left": "Specify and steer",               "right": "Prototype and build it myself" },
+    "amb":   { "label": "Scope ambiguity",       "left": "Clear specification",             "right": "Vision only, greenfield" },
+    "stake": { "label": "Stakeholder load",      "left": "Engineering only",                "right": "Legal, compliance, customers, engineering" }
+  },
+  "cases": [
+    {
+      "id": "ubs-semantic",
+      "title": "Universal semantic data model, UBS",
+      "period": "2017–2026",
+      "kind": "employment",
+      "headline": "Built and owned the first universal data model and semantic language for UBS Group Risk Control; it became the most-consumed risk report at UBS.",
+      "points": [
+        "Owned the semantic data model end to end as Product Owner; 600+ users across Switzerland, the US and Singapore.",
+        "Architected the Group Risk Control data integration for the UBS–Credit Suisse merger; multiple legacy systems decommissioned.",
+        "Chosen as the strategic foundation for the UBS–CS risk reporting integration."
+      ],
+      "proves": ["1→100 scale", "data architecture", "stakeholder management across regions", "regulated environment"],
+      "tags": { "reg": 70, "dom": 15, "build": 35, "amb": 50, "stake": 95 }
+    },
+    {
+      "id": "ubs-redesign",
+      "title": "Reporting operating model redesign, UBS",
+      "period": "2020–2022",
+      "kind": "employment",
+      "headline": "Digitalised 95% of legacy regulatory reports in two years and 76% of interactive content in 18 months by redesigning the operating model, not porting reports.",
+      "points": [
+        "Led a team of six engineers as Development Team Lead.",
+        "Regulatory and management reporting for FINMA, SNB and overseas regulators across three jurisdictions.",
+        "Promoted from Associate Director to Director in under three years."
+      ],
+      "proves": ["redesign, not digitise", "regulatory reporting", "team leadership"],
+      "tags": { "reg": 85, "dom": 10, "build": 40, "amb": 35, "stake": 80 }
+    },
+    {
+      "id": "previorisk",
+      "title": "Counterparty credit risk product, PrevioRisk",
+      "period": "2013",
+      "kind": "employment",
+      "headline": "Delivered a full CCR/CVA risk system to market in seven months against an eleven-month scope, managing 15 developers.",
+      "points": [
+        "Turned legal agreements (ISDA, netting, collateral/CSA terms) into exposure-aggregation product logic.",
+        "Basel 2/3/3.5 capital for 1,500+ trades computed in about 7 seconds; OCC/FRS-compliant supervisory reporting.",
+        "Validated pricing for 50+ structured product types; owned client communication and quality control."
+      ],
+      "proves": ["shipped a regulated financial product", "zero to market", "legal terms as computable logic"],
+      "tags": { "reg": 75, "dom": 30, "build": 70, "amb": 70, "stake": 70 }
+    },
+    {
+      "id": "raiffeisen",
+      "title": "Retail credit risk forecasting, Raiffeisen Bank Aval",
+      "period": "2010–2011",
+      "kind": "employment",
+      "headline": "Built a forecasting system for a USD 3bn+ retail portfolio (500,000+ loans); monthly risk-cost forecast error around 2.5% over 16 months.",
+      "points": [
+        "Combined flow-rate models, Markov chains, macro models and behavioural scorecards into one system.",
+        "Methodology awarded by the regional head of Raiffeisen Group."
+      ],
+      "proves": ["quantitative depth", "model building for provisioning"],
+      "tags": { "reg": 50, "dom": 10, "build": 80, "amb": 40, "stake": 35 }
+    },
+    {
+      "id": "vostok",
+      "title": "Distressed portfolio valuation, VostokFinance",
+      "period": "2014–2015",
+      "kind": "employment",
+      "headline": "Redesigned the pre-deal valuation scorecard: GINI from 0.16 to 0.59, valuation effort from 6 to 0.1 man-hours per case.",
+      "points": [
+        "Built an investment valuation and cash-flow planning system for purchased portfolios.",
+        "Reforecasting with segmentation and macro and operational variables."
+      ],
+      "proves": ["deal valuation and cash-flow mechanics", "process redesign with measurable effect"],
+      "tags": { "reg": 25, "dom": 35, "build": 85, "amb": 45, "stake": 30 }
+    },
+    {
+      "id": "amber",
+      "title": "Risk-governed autonomous trading engine",
+      "period": "2026",
+      "kind": "own build",
+      "headline": "Built an event-driven trading engine (~35k lines, 288 tests) with AI coding agents, where an autonomous strategy can never act outside limits a human set in advance.",
+      "points": [
+        "Two-stage risk layer, independent kill switch drilled live, append-only journal of every decision.",
+        "Seven go-live gates written before any engine code; paper trading only, no P&L claimed.",
+        "83 commits in under four weeks; ~6,900 lines of design documentation."
+      ],
+      "proves": ["hands-on build with AI agents", "correctness and failure modes", "controls by design"],
+      "tags": { "reg": 45, "dom": 40, "build": 100, "amb": 60, "stake": 15 }
+    },
+    {
+      "id": "jev-research",
+      "title": "Typed AI model as a governed research instrument",
+      "period": "2026",
+      "kind": "own build",
+      "headline": "Used Jev, a structured-output AI model, to score 10,988 news events, and built the controls that decide whether its output can be trusted.",
+      "points": [
+        "Knowledge-cutoff contamination test (4,070 calls) before any scoring; result disclosed as inconclusive.",
+        "Pre-registered hypotheses, holdout, multiple-testing ledger; 15 of 19 hypotheses killed by the regime.",
+        "Found no directional signal and a clear magnitude signal; reported both plainly."
+      ],
+      "proves": ["AI evaluation discipline", "honest reporting of negative results", "Jev in production-style use"],
+      "tags": { "reg": 30, "dom": 55, "build": 90, "amb": 75, "stake": 10 }
+    },
+    {
+      "id": "cfa-cv",
+      "title": "AI CV-review tool for CFA Society Switzerland (pro bono)",
+      "period": "2025–2026",
+      "kind": "pro bono",
+      "headline": "Conceived and built an AI CV-review tool that turned a manual member service into a calibrated, auditable workflow, deployed on GitHub Pages.",
+      "points": [
+        "Codified an expert reviewer's heuristics into a 7-dimension rubric; fixed systematic score inflation (~88% vs 58–70% expected).",
+        "Pinned model, golden-snapshot drift regression, noise floor from repeat runs, a human gate on every output.",
+        "Privacy by default: no server-side storage of candidate data."
+      ],
+      "proves": ["AI product from zero to live", "evaluation against an expert", "privacy by design"],
+      "tags": { "reg": 40, "dom": 50, "build": 90, "amb": 80, "stake": 45 }
+    },
+    {
+      "id": "semantic-engine",
+      "title": "Auditable analytics engine for finance (own build, method)",
+      "period": "2026",
+      "kind": "own build",
+      "headline": "Designed and built a six-layer analytics engine that reproduces a published finance figure automatically, as rules at a commit × data at a snapshot hash.",
+      "points": [
+        "Freeze / verify / serve: a reconciliation gate that fails closed; a stale or altered snapshot is refused, never served.",
+        "Governed what-if simulators with ranges, sources, thresholds and reverse stress; facts kept separate from scenarios.",
+        "108 tests; logic written as SQL so it ports to a production engine."
+      ],
+      "proves": ["correctness and audit trail", "architecture with clean seams", "reconciliation to published figures"],
+      "tags": { "reg": 55, "dom": 25, "build": 95, "amb": 55, "stake": 40 }
+    },
+    {
+      "id": "ai-operating-model",
+      "title": "AI-native delivery under human control",
+      "period": "2026",
+      "kind": "own build",
+      "headline": "Runs day-to-day engineering through a designed system of AI agents: Claude Code as lead engineer, Codex for mechanical tasks, every diff reviewed before merge.",
+      "points": [
+        "Written task briefs, isolated worktrees, acceptance checks run by the lead, not the agent.",
+        "Model tiering as a cost and quality decision; pinned versions re-baselined on upgrade.",
+        "Human-in-the-loop by construction: no agent sends mail, enters passwords or submits forms."
+      ],
+      "proves": ["AI-assisted development as a working method", "speed from idea to working product", "governance"],
+      "tags": { "reg": 35, "dom": 45, "build": 95, "amb": 65, "stake": 25 }
+    },
+    {
+      "id": "thesis",
+      "title": "EMBA thesis: decision support for portfolio managers",
+      "period": "2025–2026",
+      "kind": "education",
+      "headline": "Built a news-shock indicator (FinBERT NLP + market data) and tested it with 53 professional portfolio managers; highest thesis grade in the programme.",
+      "points": [
+        "Significant association with experts' risk decisions (β = −0.49, p = 0.0015).",
+        "Reported the null result on outcomes plainly: an adoption insight for decision-support tools.",
+        "~13,400 lines of reproducible Python."
+      ],
+      "proves": ["user research with professionals", "adoption realism", "end-to-end delivery"],
+      "tags": { "reg": 20, "dom": 50, "build": 80, "amb": 70, "stake": 55 }
+    },
+    {
+      "id": "boxing",
+      "title": "Digital presence for a Swiss sports club (pro bono)",
+      "period": "2025–2026",
+      "kind": "pro bono",
+      "headline": "Took a non-profit club from zero web presence to an indexed, legally compliant bilingual site at about CHF 12 a year.",
+      "points": [
+        "Rejected CMS and paid hosting deliberately: lowest viable cost for the client's reality.",
+        "Domain registered to the club's legal entity; photo consent under Swiss data protection law."
+      ],
+      "proves": ["pragmatic build decisions", "non-technical stakeholders in German"],
+      "tags": { "reg": 30, "dom": 70, "build": 90, "amb": 60, "stake": 40 }
+    }
+  ],
+  "gaps": [
+    {
+      "id": "kyc-aml",
+      "title": "No KYC/AML/KYT product built",
+      "detail": "Regulatory work so far is risk, capital and supervisory reporting. Onboarding and transaction-monitoring flows would be new.",
+      "trigger": { "dim": "reg", "above": 60 },
+      "weight": 0.6
+    },
+    {
+      "id": "private-markets",
+      "title": "No private-markets or tokenisation delivery",
+      "detail": "Securities, derivatives and deal-valuation mechanics are covered; syndication, SPV and on-chain settlement experience is not.",
+      "trigger": { "dim": "dom", "above": 55 },
+      "weight": 0.8
+    },
+    {
+      "id": "recency",
+      "title": "Last regulated product shipped to external clients was in 2013",
+      "detail": "Since then the regulated work was inside a bank. Recent shipping evidence is own builds, without external regulated clients.",
+      "trigger": { "dim": "reg", "above": 70, "and": { "dim": "build", "above": 60 } },
+      "weight": 0.5
+    },
+    {
+      "id": "no-cs-degree",
+      "title": "No formal software-engineering background",
+      "detail": "No CS degree and no production engineering employment. Builds with AI agents under tests and review; the codebases are evidence, not a job title.",
+      "trigger": { "dim": "build", "above": 75 },
+      "weight": 0.4
+    },
+    {
+      "id": "scaleup",
+      "title": "No scaled-fintech product organisation",
+      "detail": "Product leadership was inside a bank and a 2013 software firm, not in a payments, banking or spend-management scale-up.",
+      "trigger": { "dim": "stake", "above": 70, "and": { "dim": "amb", "above": 60 } },
+      "weight": 0.4
+    }
+  ]
+}
