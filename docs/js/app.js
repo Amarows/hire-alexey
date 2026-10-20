@@ -1,5 +1,5 @@
-import { DIMS, clampSliders, pickEvidence, activeGaps } from "./matcher.js?v=4";
-import { WORKER_URL } from "./config.js?v=4";
+import { DIMS, clampSliders, pickEvidence, activeGaps } from "./matcher.js?v=5";
+import { WORKER_URL } from "./config.js?v=5";
 
 const ROLE_ID = document.documentElement.dataset.role || "leva";
 const $ = (id) => document.getElementById(id);
@@ -21,7 +21,6 @@ const store = {
 // Must match JEV_QUESTIONS_VERSION and time_to_prototype.criteria in worker/src/prompts.js.
 const QUESTIONS_VERSION = "2026-10-20.3";
 const BANDS = ["≤ 2 days", "≤ 1 week", "2–3 weeks", "1–2 months", "longer"];
-const FIT_LEVELS = ["none", "adjacent", "partial", "strong", "direct"];
 const RISK_LABELS = {
   domain: "domain knowledge", regulatory: "regulatory approval", stakeholders: "aligning stakeholders",
   build: "the build itself", scope: "unclear scope", none: "none stands out",
@@ -202,8 +201,7 @@ function showAssessment(res, source) {
     el("p", { class: "src", text: source === "saved" ? `Saved result${when ? `, ${when.slice(0, 10)}` : ""}` : "Live result" }),
     el("div", { class: "metrics" },
       metric(fmtTime(d.expected_weeks), `to a clickable prototype (most likely ${band})`),
-      metric(pct(d.p_mvp), "chance of a usable MVP within 3 months"),
-      metric(d.fit_level != null ? FIT_LEVELS[Math.round(d.fit_level)] : "–", "fit of his evidence to the project")),
+      metric(pct(d.p_mvp), "chance of a usable MVP within 3 months")),
     bars, labels,
     el("p", { class: "riskline" }, el("b", { text: "Main risk: " }), d.main_risk ? RISK_LABELS[d.main_risk] || d.main_risk : "–"));
   if (res.state && res.questions) {
