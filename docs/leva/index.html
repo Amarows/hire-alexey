@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Why hire Alexey · LEVA Product Architect</title>
-<meta name="description" content="An interactive case for Alexey Malashonak as LEVA's Product Architect: explore his record against projects LEVA might run, with Jev and Claude judging the fit.">
+<meta name="description" content="An interactive case for Alexey Malashonak as LEVA's Product Architect: explore his record against projects LEVA might run, with AI assessing the fit.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,7 +34,7 @@ html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 var(--body)}
 a{color:var(--accent)}
 [hidden]{display:none!important}
-.wrap{max-width:1120px;margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+.wrap{max-width:1680px;margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
 .read{max-width:68ch}
 h1,h2,h3{font-family:var(--display);font-weight:500;text-wrap:balance;margin:0}
 h1{font-size:clamp(2rem,4.6vw,3.25rem);line-height:1.08;letter-spacing:-.01em}
@@ -60,16 +60,16 @@ header.top .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;ju
 .access .state{font-size:.85rem;color:var(--muted)}
 .access .state.ok{color:var(--good)}
 
-section{padding-block:clamp(40px,7vw,72px);border-bottom:1px solid var(--rule)}
-section > .wrap > header{display:flex;flex-direction:column;gap:8px;margin-bottom:28px}
+section{padding-block:clamp(28px,4vw,44px);border-bottom:1px solid var(--rule)}
+section > .wrap > header, header.sub{display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
 .lede{color:var(--muted);max-width:62ch;margin:0}
 
 /* hero */
-.hero h1{max-width:20ch;margin-top:10px}
-.answer{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:14px;max-width:70ch}
+.hero h1{max-width:28ch;margin-top:8px}
+.answer{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:14px 28px;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))}
 .answer li{display:grid;grid-template-columns:2.2em 1fr;gap:4px;font-size:1.08rem}
 .answer li span{font-family:var(--mono);color:var(--accent);padding-top:.15em}
-.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
 .chip{border:1px solid var(--rule);background:var(--sheet);border-radius:999px;padding:.25em .75em;font-size:.85rem}
 
 /* simulator */
@@ -123,7 +123,10 @@ details.asked pre{max-height:320px;overflow:auto;background:var(--sheet);border:
 .tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--rule);margin-bottom:16px}
 .tab{border:0;background:none;padding:.6em .9em;cursor:pointer;border-bottom:2px solid transparent;color:var(--muted);font-weight:500}
 .tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
-.out{background:var(--sheet);border:1px solid var(--rule);border-radius:var(--r);padding:18px 20px;min-height:6em;max-width:78ch}
+.out{background:var(--sheet);border:1px solid var(--rule);border-radius:var(--r);padding:18px 20px;min-height:6em}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,560px),1fr));gap:40px;align-items:start}
+.two > div{min-width:0}
+.gapi .mit{display:block;color:var(--ink);margin-top:4px}
 .out p{margin:.5em 0}.out ul,.out ol{margin:.4em 0;padding-left:1.3em}.out h4{font:600 1rem var(--body);margin:1em 0 .3em}
 .out .cite{font-family:var(--mono);font-size:.8em;background:var(--accent-soft);border-radius:3px;padding:0 .3em;text-decoration:none}
 .busy{color:var(--muted);font-style:italic}
@@ -131,7 +134,7 @@ details.asked pre{max-height:320px;overflow:auto;background:var(--sheet);border:
 .actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:12px 0}
 
 /* fit map */
-.fit{display:grid;gap:10px;max-width:880px}
+.fit{display:grid;gap:0 32px;grid-template-columns:repeat(auto-fit,minmax(min(100%,480px),1fr))}
 .fitrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 16px;padding:12px 0;border-bottom:1px solid var(--rule)}
 .fitrow .req{font-weight:500}
 .fitrow .note{grid-column:1 / -1;color:var(--muted);font-size:.92rem}
@@ -147,7 +150,7 @@ details.asked pre{max-height:320px;overflow:auto;background:var(--sheet);border:
 .record .case{scroll-margin-top:24px}
 .record .case:target{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
 .record ul{margin:.5em 0 0;padding-left:1.1em;font-size:.92rem}
-.timeline{margin-top:28px;display:grid;gap:4px;font-size:.9rem;max-width:760px}
+.timeline{margin-top:20px;display:grid;gap:4px 32px;font-size:.9rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,520px),1fr))}
 .timeline div{display:grid;grid-template-columns:9.5em minmax(0,1fr);gap:12px}
 .timeline .when{font-family:var(--mono);color:var(--muted);font-size:.85rem}
 
@@ -195,7 +198,7 @@ footer{padding-block:32px;color:var(--muted);font-size:.85rem}
       <header>
         <span class="eyebrow">Project simulator</span>
         <h2>Describe a project you might give him</h2>
-        <p class="lede">Pick a project from LEVA's roadmap or set the five characteristics yourself. The closest evidence and the gaps update as you move a slider. Jev then gives a quick judgment on delivery; Claude handles the longer analysis further down.</p>
+        <p class="lede">Pick a project from LEVA's roadmap or set the five characteristics yourself. The closest evidence and the ramp-up areas update as you move a slider. A fast judgment model then assesses delivery; Claude handles the longer analysis below.</p>
       </header>
       <div class="sim">
         <div class="panel" id="controls">
@@ -216,26 +219,27 @@ footer{padding-block:32px;color:var(--muted);font-size:.85rem}
             <div class="cards" id="evidence" aria-live="polite"></div>
           </div>
           <div>
-            <h3>Gaps this project exposes</h3>
+            <h3>Where he would ramp up</h3>
             <div class="gaps" id="gaps" aria-live="polite"></div>
           </div>
           <div class="jevbox" id="jev">
             <div class="jevhead">
-              <h3>Jev's judgment</h3>
-              <button class="btn jev" id="jevRun" type="button">Evaluate with Jev</button>
+              <h3>Delivery assessment</h3>
+              <button class="btn jev" id="jevRun" type="button">Assess this project</button>
             </div>
-            <div id="jevBody"><p class="none">Choose a preset to see a saved result, or press Evaluate.</p></div>
-            <p class="disclaim">Jev is TypeSafe's fast judgment model. It returns probabilities, not text. These are model judgments on Alexey's documented record, not forecasts; the gaps above are part of what it sees.</p>
-            <details class="asked" id="jevAsked" hidden><summary>Exactly what Jev was asked</summary><pre id="jevAskedPre"></pre></details>
+            <div id="jevBody"><p class="none">Choose a preset to see a saved result, or press Assess.</p></div>
+            <p class="disclaim">A fast judgment model scores the project against the evidence on this page and returns probabilities, not text. It judges the record Alexey presents, including the ramp-up areas and their mitigations; it is not a forecast.</p>
+            <details class="asked" id="jevAsked" hidden><summary>Exactly what the model was asked</summary><pre id="jevAskedPre"></pre></details>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="claude">
-    <div class="wrap">
-      <header>
+  <section id="work">
+    <div class="wrap two">
+      <div id="claude">
+      <header class="sub">
         <span class="eyebrow">Deeper analysis · Claude</span>
         <h2>Plan it, question it, test the numbers</h2>
         <p class="lede">Claude answers only from the material on this page and cites the cases it uses. It works on the project currently set in the simulator.</p>
@@ -243,7 +247,7 @@ footer{padding-block:32px;color:var(--muted);font-size:.85rem}
       <div class="tabs" role="tablist">
         <button class="tab" role="tab" aria-selected="true" data-task="plan">30/60/90 plan</button>
         <button class="tab" role="tab" aria-selected="false" data-task="ask">Ask about Alexey</button>
-        <button class="tab" role="tab" aria-selected="false" data-task="crossexam">Cross-examine Jev</button>
+        <button class="tab" role="tab" aria-selected="false" data-task="crossexam">Challenge the assessment</button>
       </div>
       <div class="field" id="askField" hidden>
         <label for="askText">Your question</label>
@@ -254,6 +258,30 @@ footer{padding-block:32px;color:var(--muted);font-size:.85rem}
         <span id="claudeHint" class="none"></span>
       </div>
       <div class="out" id="claudeOut"><p class="none">Output appears here.</p></div>
+    </div>
+      <div id="next">
+      <header class="sub">
+        <span class="eyebrow">Next step</span>
+        <h2>Draft it here, send it yourself</h2>
+        <p class="lede">Claude drafts the message from LEVA's side, using the project you explored. Edit it, copy it, and send it from your own mail.</p>
+      </header>
+      <div class="kinds" role="group" aria-label="Kind of draft">
+        <button class="preset" data-kind="invite" aria-pressed="true">Interview invitation</button>
+        <button class="preset" data-kind="references" aria-pressed="false">Request references</button>
+        <button class="preset" data-kind="offer" aria-pressed="false">Draft offer letter</button>
+      </div>
+      <div class="field read">
+        <label for="draftNotes">Anything to include (optional)</label>
+        <input id="draftNotes" type="text" maxlength="300" placeholder="e.g. propose Thursday or Friday next week">
+      </div>
+      <div class="actions">
+        <button class="btn" id="draftRun" type="button">Draft it</button>
+        <button class="btn secondary" id="draftCopy" type="button" disabled>Copy</button>
+        <span id="draftHint" class="none"></span>
+      </div>
+      <textarea id="draftText" aria-label="Draft" placeholder="The draft appears here and you can edit it."></textarea>
+      <p class="contact">Alexey's email: <span class="mono" id="email"></span> · <a id="linkedin" href="#" target="_blank" rel="noopener">LinkedIn</a></p>
+    </div>
     </div>
   </section>
 
@@ -280,32 +308,6 @@ footer{padding-block:32px;color:var(--muted);font-size:.85rem}
     </div>
   </section>
 
-  <section id="next">
-    <div class="wrap">
-      <header>
-        <span class="eyebrow">Next step</span>
-        <h2>Draft it here, send it yourself</h2>
-        <p class="lede">Claude drafts the message from LEVA's side, using the project you explored. Edit it, copy it, and send it from your own mail.</p>
-      </header>
-      <div class="kinds" role="group" aria-label="Kind of draft">
-        <button class="preset" data-kind="invite" aria-pressed="true">Interview invitation</button>
-        <button class="preset" data-kind="references" aria-pressed="false">Request references</button>
-        <button class="preset" data-kind="offer" aria-pressed="false">Draft offer letter</button>
-      </div>
-      <div class="field read">
-        <label for="draftNotes">Anything to include (optional)</label>
-        <input id="draftNotes" type="text" maxlength="300" placeholder="e.g. propose Thursday or Friday next week">
-      </div>
-      <div class="actions">
-        <button class="btn" id="draftRun" type="button">Draft it</button>
-        <button class="btn secondary" id="draftCopy" type="button" disabled>Copy</button>
-        <span id="draftHint" class="none"></span>
-      </div>
-      <textarea id="draftText" aria-label="Draft" placeholder="The draft appears here and you can edit it."></textarea>
-      <p class="contact">Alexey's email: <span class="mono" id="email"></span> · <a id="linkedin" href="#" target="_blank" rel="noopener">LinkedIn</a></p>
-    </div>
-  </section>
-
   <section id="built">
     <div class="wrap">
       <header>
@@ -314,8 +316,8 @@ footer{padding-block:32px;color:var(--muted);font-size:.85rem}
         <p class="lede">The posting asks for someone who prototypes and builds with AI coding and agentic tools. This page was built that way in about a day.</p>
       </header>
       <div class="built">
-        <div><h3>Division of labour</h3><p>Claude Code wrote the content, the questions for Jev, the prompts and this page. OpenAI Codex built the proxy, the matcher and the tests from written briefs. Every Codex diff was reviewed and its acceptance checks run before merge.</p></div>
-        <div><h3>Judgment, not arithmetic</h3><p>Plain code picks the evidence and the gaps. Jev only judges, and the page shows exactly what it was asked. Claude writes, cites cases, and does not invent numbers.</p></div>
+        <div><h3>Division of labour</h3><p>Claude Code wrote the content, the assessment questions, the prompts and this page. OpenAI Codex built the proxy, the matcher and the tests from written briefs. Every Codex diff was reviewed and its acceptance checks run before merge.</p></div>
+        <div><h3>Judgment, not arithmetic</h3><p>Plain code picks the evidence and the ramp-up areas. A fast judgment model only judges, and the page shows exactly what it was asked. Claude writes, cites cases, and does not invent numbers.</p></div>
         <div><h3>Keys stay server-side</h3><p>A small Cloudflare Worker holds the API keys and checks the access code. The page itself has no secrets and only public facts about Alexey.</p></div>
         <div><h3>Open to inspection</h3><p>Source, briefs and tests: <a href="https://github.com/Amarows/hire-alexey" target="_blank" rel="noopener">github.com/Amarows/hire-alexey</a>.</p></div>
       </div>

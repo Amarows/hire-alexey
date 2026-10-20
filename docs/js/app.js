@@ -150,13 +150,14 @@ function renderEvidence() {
 function renderGaps() {
   const box = $("gaps"); box.replaceChildren();
   const gaps = activeGaps(profile, state.sliders);
-  if (!gaps.length) { box.append(el("p", { class: "none", text: "None of the known gaps is triggered by this project." })); return; }
-  for (const g of gaps) box.append(el("div", { class: "gapi" }, el("b", { text: g.title }), el("br"), g.detail));
+  if (!gaps.length) { box.append(el("p", { class: "none", text: "No ramp-up area stands out for this project." })); return; }
+  for (const g of gaps) box.append(el("div", { class: "gapi" }, el("b", { text: g.title }), el("br"), g.detail,
+    g.mitigation ? el("span", { class: "mit" }, el("strong", { text: "Mitigation: " }), g.mitigation) : null));
 }
 
 // ---------- Jev ----------
 function showJevEmpty(msg) {
-  $("jevBody").replaceChildren(el("p", { class: "none", text: msg || "Press Evaluate to ask Jev about this project." }));
+  $("jevBody").replaceChildren(el("p", { class: "none", text: msg || "Press Assess to get a delivery assessment for this project." }));
   $("jevAsked").hidden = true;
 }
 
@@ -174,8 +175,8 @@ function showJev(res, source) {
   const when = res.generated_utc || precomputed?.generated_utc;
   $("jevBody").replaceChildren(
     el("p", { class: "jevhead src", text: source === "saved"
-      ? `Saved result for this preset${when ? `, ${when.slice(0, 10)}` : ""} · ${res.model || precomputed?.model || "Jev"}`
-      : `Live result · ${res.model || "Jev"}` }),
+      ? `Saved result for this preset${when ? `, ${when.slice(0, 10)}` : ""}`
+      : "Live result" }),
     el("div", { class: "metrics" },
       metric(pct(d.p_mvp), "chance of a usable MVP within six months"),
       metric(d.expected_weeks != null ? `${d.expected_weeks} wk` : "–", `expected time to first prototype (most likely ${band})`),
@@ -195,9 +196,9 @@ function showJev(res, source) {
 const metric = (v, l) => el("div", { class: "metric" }, el("div", { class: "v", text: v }), el("div", { class: "l", text: l }));
 
 async function runJev() {
-  if (!accessCode) { showJevEmpty("Enter the access code at the top of the page to run Jev live. Presets show saved results without it."); return; }
+  if (!accessCode) { showJevEmpty("Enter the access code at the top of the page to run a live assessment. Presets show saved results without it."); return; }
   const btn = $("jevRun"); btn.disabled = true;
-  $("jevBody").replaceChildren(el("p", { class: "busy", text: "Asking Jev…" }));
+  $("jevBody").replaceChildren(el("p", { class: "busy", text: "Assessing…" }));
   try {
     const res = await api("/api/jev", { role: ROLE_ID, project: { title: state.title, brief: state.brief }, sliders: state.sliders });
     showJev(res, "live");
@@ -242,7 +243,7 @@ function wireAccess() {
 const TASK_UI = {
   plan: { button: "Write the plan", hint: "Uses the project set in the simulator." },
   ask: { button: "Ask", hint: "Answers come only from this page's material." },
-  crossexam: { button: "Cross-examine Jev", hint: "Needs a Jev result for the current project." },
+  crossexam: { button: "Challenge the assessment", hint: "Needs an assessment of the current project." },
 };
 
 function wireClaude() {
@@ -269,7 +270,7 @@ async function runClaude() {
     if (!q) { $("askText").focus(); return; }
     body = { role: ROLE_ID, task, question: q };
   } else {
-    if (!lastJev) { out.replaceChildren(el("p", { class: "none", text: "Run Jev on the current project first, or pick a preset with a saved result." })); return; }
+    if (!lastJev) { out.replaceChildren(el("p", { class: "none", text: "Assess the current project first, or pick a preset with a saved result." })); return; }
     body = { role: ROLE_ID, task, project, sliders: state.sliders, jev: lastJev.derived };
   }
   const btn = $("claudeRun"); btn.disabled = true;

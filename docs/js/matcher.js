@@ -55,10 +55,10 @@ export function buildJevState(profile, role, project, sliders, operatingAssumpti
       brief: clean(project?.brief, 600),
       characteristics: describeSliders(profile, s)
     },
-    evidence: matchCases(profile, s, 3).map(({ case: c }) => ({
+    evidence: matchCases(profile, s, 5).map(({ case: c }) => ({
       title: c.title, period: c.period, kind: c.kind, headline: c.headline, points: c.points
     })),
-    known_gaps: activeGaps(profile, s).map(g => ({ title: g.title, detail: g.detail })),
+    known_gaps: activeGaps(profile, s).map(g => ({ title: g.title, detail: g.detail, mitigation: g.mitigation })),
     operating_assumption: operatingAssumption
   };
 }

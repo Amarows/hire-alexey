@@ -2,7 +2,7 @@
 // Changing a Jev question after results are published is a new version: bump JEV_QUESTIONS_VERSION.
 
 export const JEV_MODEL = "jev-latest";
-export const JEV_QUESTIONS_VERSION = "2026-10-20.1";
+export const JEV_QUESTIONS_VERSION = "2026-10-20.2";
 
 // Midpoints in weeks for the time_to_prototype levels, used for the expected value.
 export const PROTOTYPE_WEEKS = [1.5, 3, 6, 12, 20];
@@ -11,10 +11,10 @@ export const JEV_QUESTIONS = {
   time_to_prototype: {
     type: "score",
     instructions:
-      "How long would `candidate` most likely need to put a first working prototype of `project.title` " +
-      "in front of LEVA's deal managers or compliance team? Judge from `project.brief`, " +
-      "`project.characteristics`, what the `evidence` shows he has built and how fast, the `known_gaps`, " +
-      "and `operating_assumption`.",
+      "Building with AI coding agents as described in `operating_assumption`, how long would `candidate` most " +
+      "likely need to put a first working prototype of `project.title` in front of LEVA's deal managers or " +
+      "compliance team? Judge from `project.brief`, `project.characteristics`, what the `evidence` shows he has " +
+      "built and how fast, and the `known_gaps` together with their `mitigation`.",
     criteria: [
       "within 2 weeks",
       "2 to 4 weeks",
@@ -26,10 +26,10 @@ export const JEV_QUESTIONS = {
   mvp_success: {
     type: "noul",
     instructions:
-      "Within six months, will `candidate` lead `project.title` to a usable MVP that LEVA's customers or " +
-      "compliance team actually use, rather than stalling in specification, being blocked by approvals, or " +
-      "having to be handed to someone with more domain experience? Judge only from `evidence`, " +
-      "`known_gaps`, `project.characteristics` and `operating_assumption`.",
+      "With the support described in `operating_assumption`, will `candidate` lead `project.title` to a usable " +
+      "MVP that LEVA's customers or compliance team use within six months, rather than it stalling in " +
+      "specification? Judge from `evidence`, `known_gaps` with their `mitigation`, `project.characteristics` " +
+      "and `operating_assumption`.",
   },
   evidence_fit: {
     type: "score",
@@ -46,9 +46,9 @@ export const JEV_QUESTIONS = {
   needs_specialist: {
     type: "noul",
     instructions:
-      "Will `project.title` need specialist expertise (legal, tax, licensing or crypto-asset) that the " +
-      "`evidence` does not show and that `candidate` could not reasonably borrow from LEVA's legal counsel " +
-      "and compliance analyst, rather than knowledge he can learn on the job?",
+      "Will `project.title` need outside specialist expertise (legal, tax, licensing or crypto-asset) that " +
+      "neither `candidate` nor LEVA's own legal counsel and compliance analyst can provide, rather than " +
+      "knowledge available inside the team or learnable on the job?",
   },
   main_risk: {
     type: "choice",
@@ -67,8 +67,10 @@ export const JEV_QUESTIONS = {
 };
 
 export const OPERATING_ASSUMPTION =
-  "He joins LEVA as Product Architect reporting to the CTO, works alongside a Financial Systems Engineer " +
-  "and LEVA's existing engineers, legal counsel and compliance analyst, and builds with AI coding agents.";
+  "He joins LEVA as Product Architect reporting to the CTO. LEVA's senior legal counsel and compliance analyst " +
+  "own legal and regulatory interpretation; a Financial Systems Engineer, a Lead Architect and full-stack " +
+  "engineers build with him. He prototypes with AI coding agents, as in his own builds, and has the usual " +
+  "onboarding time to learn LEVA's partnership structure and product.";
 
 // ---------- Claude ----------
 
@@ -82,7 +84,7 @@ export const SYSTEM_BASE = `You are the assistant on Alexey Malashonak's portal 
 
 Rules:
 - Use only the CONTEXT below. If something is not in it, say it is not in the material. Never invent employers, clients, numbers, dates or outcomes.
-- Be balanced. Name gaps when they matter; the CONTEXT lists them. A confident overclaim costs more trust than a gap.
+- Lead with the evidence for him. Mention a gap only where it matters, together with its mitigation from the CONTEXT. Never overclaim: an overclaim costs more trust than a gap.
 - Pro bono and personal projects are never employment. Keep the "kind" of each case as given.
 - Cite cases by id in square brackets, e.g. [previorisk], so the page can link them.
 - Write plain, direct English. Short paragraphs or short lists. No flattery, no exclamation marks, no filler such as "great question".
@@ -107,11 +109,11 @@ For each period give 3-4 concrete outcomes, not activities. Show where he depend
   },
   crossexam: {
     maxInput: 3000,
-    prompt: (p) => `Jev, a fast judgment model, gave these answers for the project "${p.title}" (characteristics: ${p.characteristicsText}):
+    prompt: (p) => `A fast judgment model gave these answers for the project "${p.title}" (characteristics: ${p.characteristicsText}):
 
 ${p.jevSummary}
 
-Cross-examine them. Give (1) the strongest case that Jev is too optimistic, (2) the strongest case that it is too pessimistic, each tied to specific evidence or gaps, and (3) one question the CTO should ask Alexey in an interview to settle it. Do not produce new probabilities. Under 250 words.`,
+Do not name the model; call it "the assessment". Cross-examine it. Give (1) the strongest case that it is too cautious, (2) the strongest case that it is too optimistic, each tied to specific evidence or gaps, and (3) one question the CTO should ask Alexey in an interview to settle it. Do not produce new probabilities. Under 250 words.`,
   },
   draft: {
     maxInput: 1500,
