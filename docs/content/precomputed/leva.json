@@ -1,0 +1,1147 @@
+{
+  "generated_utc": "2026-10-20T11:24:12.243Z",
+  "questions_version": "2026-10-20.3",
+  "model": "jev-1.13.0",
+  "presets": {
+    "voting": {
+      "model": "jev-1.13.0",
+      "questions_version": "2026-10-20.3",
+      "request_id": "req_01a1590df01e7ac5868fb691d3cb9a75",
+      "answers": {
+        "time_to_prototype": {
+          "type": "score",
+          "score": 0.83,
+          "confidence": 0.62,
+          "legend": {
+            "0": "within 2 days",
+            "1": "within 1 week",
+            "2": "2 to 3 weeks",
+            "3": "1 to 2 months",
+            "4": "longer than 2 months"
+          },
+          "probabilities": {
+            "0": 0.32,
+            "1": 0.55,
+            "2": 0.12,
+            "3": 0.01,
+            "4": 0
+          }
+        },
+        "mvp_success": {
+          "type": "noul",
+          "noul": 0.75
+        },
+        "evidence_fit": {
+          "type": "score",
+          "score": 1.48,
+          "confidence": 0.59,
+          "legend": {
+            "0": "none: no relevant evidence",
+            "1": "adjacent: only transferable skills",
+            "2": "partial: some core parts done before",
+            "3": "strong: most core parts done before",
+            "4": "direct: has delivered an equivalent product"
+          },
+          "probabilities": {
+            "0": 0,
+            "1": 0.57,
+            "2": 0.37,
+            "3": 0.06,
+            "4": 0
+          }
+        },
+        "needs_specialist": {
+          "type": "noul",
+          "noul": 0.23
+        },
+        "main_risk": {
+          "type": "choice",
+          "choice": "stakeholders",
+          "confidence": 0.75,
+          "probabilities": {
+            "domain": 0.11,
+            "regulatory": 0.06,
+            "stakeholders": 0.79,
+            "build": 0.01,
+            "scope": 0.01,
+            "none": 0.02
+          }
+        }
+      },
+      "derived": {
+        "p_mvp": 0.75,
+        "p_specialist": 0.23,
+        "weeks_dist": [
+          0.32,
+          0.55,
+          0.12,
+          0.01,
+          0
+        ],
+        "expected_weeks": 0.9,
+        "likely_band": 1,
+        "fit_level": 1.48,
+        "main_risk": "stakeholders",
+        "main_risk_probs": {
+          "domain": 0.11,
+          "regulatory": 0.06,
+          "stakeholders": 0.79,
+          "build": 0.01,
+          "scope": 0.01,
+          "none": 0.02
+        }
+      },
+      "evidence": [
+        "Counterparty credit risk product, PrevioRisk",
+        "AI CV-review tool for CFA Society Switzerland (pro bono)",
+        "Universal semantic data model, UBS",
+        "Retail credit risk forecasting, Raiffeisen Bank Aval",
+        "Distressed portfolio valuation, VostokFinance"
+      ],
+      "gaps": [],
+      "state": {
+        "candidate": "Alexey Malashonak",
+        "role": "Product Architect at LEVA: Product-first role: set the roadmap, decide build, buy, partner or not build, hold financial, legal and regulatory complexity (securities, KYC/AML/KYT) and turn it into simple products, redesign processes rather than digitise them, and prototype and build meaningful parts with AI coding and agentic tools. Works alongside a Financial Systems Engineer.",
+        "company": "Co-investment syndication infrastructure: deal managers set up a vehicle, invite their investor network, collect commitments, close, and administer the portfolio to exit.",
+        "project": {
+          "title": "Co-investor voting",
+          "brief": "Let co-investors in a syndicate vote digitally on deal-manager proposals (follow-on, exit, consent items), with quorum and majority rules from the Partnership Agreement and a legally usable record.",
+          "characteristics": "Regulatory depth: 45/100 (0 = No regulatory touchpoint, 100 = New licence or jurisdiction)\nDomain distance: 35/100 (0 = Core finance & risk mechanics, 100 = New ground: tokenisation, on-chain)\nHands-on build share: 75/100 (0 = Specify and steer, 100 = Prototype and build it myself)\nScope ambiguity: 40/100 (0 = Clear specification, 100 = Vision only, greenfield)\nStakeholder load: 60/100 (0 = Engineering only, 100 = Legal, compliance, customers, engineering)"
+        },
+        "evidence": [
+          {
+            "title": "Counterparty credit risk product, PrevioRisk",
+            "period": "2013",
+            "kind": "employment",
+            "headline": "Delivered a full CCR/CVA risk system to market in seven months against an eleven-month scope, managing 15 developers.",
+            "points": [
+              "Turned legal agreements (ISDA, netting, collateral/CSA terms) into exposure-aggregation product logic.",
+              "Basel 2/3/3.5 capital for 1,500+ trades computed in about 7 seconds; OCC/FRS-compliant supervisory reporting.",
+              "Validated pricing for 50+ structured product types; owned client communication and quality control."
+            ]
+          },
+          {
+            "title": "AI CV-review tool for CFA Society Switzerland (pro bono)",
+            "period": "2025–2026",
+            "kind": "pro bono",
+            "headline": "Conceived and built an AI CV-review tool that turned a manual member service into a calibrated, auditable workflow, deployed on GitHub Pages.",
+            "points": [
+              "Codified an expert reviewer's heuristics into a 7-dimension rubric; fixed systematic score inflation (~88% vs 58–70% expected).",
+              "Pinned model, golden-snapshot drift regression, noise floor from repeat runs, a human gate on every output.",
+              "Privacy by default: no server-side storage of candidate data."
+            ]
+          },
+          {
+            "title": "Universal semantic data model, UBS",
+            "period": "2017–2026",
+            "kind": "employment",
+            "headline": "Built and owned the first universal data model and semantic language for UBS Group Risk Control; it became the most-consumed risk report at UBS.",
+            "points": [
+              "Owned the semantic data model end to end as Product Owner; 600+ users across Switzerland, the US and Singapore.",
+              "Architected the Group Risk Control data integration for the UBS–Credit Suisse merger; multiple legacy systems decommissioned.",
+              "Chosen as the strategic foundation for the UBS–CS risk reporting integration."
+            ]
+          },
+          {
+            "title": "Retail credit risk forecasting, Raiffeisen Bank Aval",
+            "period": "2010–2011",
+            "kind": "employment",
+            "headline": "Built a forecasting system for a USD 3bn+ retail portfolio (500,000+ loans); monthly risk-cost forecast error around 2.5% over 16 months.",
+            "points": [
+              "Combined flow-rate models, Markov chains, macro models and behavioural scorecards into one system.",
+              "Methodology awarded by the regional head of Raiffeisen Group."
+            ]
+          },
+          {
+            "title": "Distressed portfolio valuation, VostokFinance",
+            "period": "2014–2015",
+            "kind": "employment",
+            "headline": "Redesigned the pre-deal valuation scorecard: GINI from 0.16 to 0.59, valuation effort from 6 to 0.1 man-hours per case.",
+            "points": [
+              "Built an investment valuation and cash-flow planning system for purchased portfolios.",
+              "Reforecasting with segmentation and macro and operational variables."
+            ]
+          }
+        ],
+        "known_gaps": [],
+        "operating_assumption": "He joins LEVA as Product Architect reporting to the CTO. LEVA's senior legal counsel and compliance analyst own legal and regulatory interpretation; a Financial Systems Engineer, a Lead Architect and full-stack engineers build with him. He prototypes with AI coding agents, as in his own builds, and has the usual onboarding time to learn LEVA's partnership structure and product.",
+        "build_speed": [
+          "This portal: first commit to live, access-controlled AI service in 31 minutes; page, proxy and 15 automated tests in 41 minutes (git timestamps, 20 Oct 2026).",
+          "Risk-governed trading engine: 83 commits, ~35,000 lines and 288 tests in under four weeks (Aug-Sep 2026).",
+          "AI CV-review tool: idea to a live, calibrated tool on GitHub Pages in about 3.5 months part-time, alongside an EMBA (2026).",
+          "PrevioRisk (2013, before AI tools): a full counterparty-risk product to market in 7 months against an 11-month plan, with 15 developers."
+        ]
+      },
+      "questions": {
+        "time_to_prototype": {
+          "type": "score",
+          "instructions": "How long would `candidate` need to build a clickable prototype of `project.title` on test data, good enough to demo to LEVA's deal managers or compliance team? A prototype needs no production integration, no compliance sign-off and no real customer data. Judge from `build_speed` (his measured pace with AI coding agents), `project.brief`, `project.characteristics`, `evidence`, and `known_gaps` with their `mitigation`.",
+          "criteria": [
+            "within 2 days",
+            "within 1 week",
+            "2 to 3 weeks",
+            "1 to 2 months",
+            "longer than 2 months"
+          ]
+        },
+        "mvp_success": {
+          "type": "noul",
+          "instructions": "With the support described in `operating_assumption`, will `candidate` lead `project.title` to a usable MVP that LEVA's customers or compliance team use within three months, rather than it stalling in specification? Judge from `build_speed`, `evidence`, `known_gaps` with their `mitigation`, `project.characteristics` and `operating_assumption`."
+        },
+        "evidence_fit": {
+          "type": "score",
+          "instructions": "How closely does the `evidence` match what `project.title` (`project.brief`) actually requires?",
+          "criteria": [
+            "none: no relevant evidence",
+            "adjacent: only transferable skills",
+            "partial: some core parts done before",
+            "strong: most core parts done before",
+            "direct: has delivered an equivalent product"
+          ]
+        },
+        "needs_specialist": {
+          "type": "noul",
+          "instructions": "Will `project.title` need outside specialist expertise (legal, tax, licensing or crypto-asset) that neither `candidate` nor LEVA's own legal counsel and compliance analyst can provide, rather than knowledge available inside the team or learnable on the job?"
+        },
+        "main_risk": {
+          "type": "choice",
+          "instructions": "What is the single biggest risk to `candidate` delivering `project.title`, given `evidence`, `known_gaps` and `project.characteristics`?",
+          "criteria": {
+            "domain": "missing domain knowledge (private markets, crypto assets, KYC/AML)",
+            "regulatory": "waiting on a regulator, auditor or licence approval",
+            "stakeholders": "aligning legal, compliance, customers and engineering",
+            "build": "the technical build itself",
+            "scope": "unclear scope or a changing vision",
+            "none": "no material risk stands out"
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 2268,
+        "output_tokens": 139
+      }
+    },
+    "kyt": {
+      "model": "jev-1.13.0",
+      "questions_version": "2026-10-20.3",
+      "request_id": "req_01a1590df53e74d7a80d0eae170549bb",
+      "answers": {
+        "time_to_prototype": {
+          "type": "score",
+          "score": 1.44,
+          "confidence": 0.53,
+          "legend": {
+            "0": "within 2 days",
+            "1": "within 1 week",
+            "2": "2 to 3 weeks",
+            "3": "1 to 2 months",
+            "4": "longer than 2 months"
+          },
+          "probabilities": {
+            "0": 0.07,
+            "1": 0.47,
+            "2": 0.42,
+            "3": 0.04,
+            "4": 0
+          }
+        },
+        "mvp_success": {
+          "type": "noul",
+          "noul": 0.69
+        },
+        "evidence_fit": {
+          "type": "score",
+          "score": 1.36,
+          "confidence": 0.7,
+          "legend": {
+            "0": "none: no relevant evidence",
+            "1": "adjacent: only transferable skills",
+            "2": "partial: some core parts done before",
+            "3": "strong: most core parts done before",
+            "4": "direct: has delivered an equivalent product"
+          },
+          "probabilities": {
+            "0": 0,
+            "1": 0.66,
+            "2": 0.32,
+            "3": 0.02,
+            "4": 0
+          }
+        },
+        "needs_specialist": {
+          "type": "noul",
+          "noul": 0.27
+        },
+        "main_risk": {
+          "type": "choice",
+          "choice": "domain",
+          "confidence": 0.8,
+          "probabilities": {
+            "domain": 0.83,
+            "regulatory": 0.08,
+            "stakeholders": 0.09,
+            "build": 0,
+            "scope": 0,
+            "none": 0
+          }
+        }
+      },
+      "derived": {
+        "p_mvp": 0.69,
+        "p_specialist": 0.27,
+        "weeks_dist": [
+          0.07,
+          0.47,
+          0.42,
+          0.04,
+          0
+        ],
+        "expected_weeks": 1.7,
+        "likely_band": 1,
+        "fit_level": 1.36,
+        "main_risk": "domain",
+        "main_risk_probs": {
+          "domain": 0.83,
+          "regulatory": 0.08,
+          "stakeholders": 0.09,
+          "build": 0,
+          "scope": 0,
+          "none": 0
+        }
+      },
+      "evidence": [
+        "Reporting operating model redesign, UBS",
+        "Risk-governed autonomous trading engine",
+        "Counterparty credit risk product, PrevioRisk",
+        "Universal semantic data model, UBS",
+        "Auditable analytics engine for finance (own build, method)"
+      ],
+      "gaps": [
+        "No KYC/AML/KYT product built"
+      ],
+      "state": {
+        "candidate": "Alexey Malashonak",
+        "role": "Product Architect at LEVA: Product-first role: set the roadmap, decide build, buy, partner or not build, hold financial, legal and regulatory complexity (securities, KYC/AML/KYT) and turn it into simple products, redesign processes rather than digitise them, and prototype and build meaningful parts with AI coding and agentic tools. Works alongside a Financial Systems Engineer.",
+        "company": "Co-investment syndication infrastructure: deal managers set up a vehicle, invite their investor network, collect commitments, close, and administer the portfolio to exit.",
+        "project": {
+          "title": "KYT transaction monitoring",
+          "brief": "Monitor capital inflows and distributions for AML red flags, route alerts to the compliance analyst with evidence, and keep an audit trail the VQF auditor accepts.",
+          "characteristics": "Regulatory depth: 85/100 (0 = No regulatory touchpoint, 100 = New licence or jurisdiction)\nDomain distance: 45/100 (0 = Core finance & risk mechanics, 100 = New ground: tokenisation, on-chain)\nHands-on build share: 55/100 (0 = Specify and steer, 100 = Prototype and build it myself)\nScope ambiguity: 50/100 (0 = Clear specification, 100 = Vision only, greenfield)\nStakeholder load: 80/100 (0 = Engineering only, 100 = Legal, compliance, customers, engineering)"
+        },
+        "evidence": [
+          {
+            "title": "Reporting operating model redesign, UBS",
+            "period": "2020–2022",
+            "kind": "employment",
+            "headline": "Digitalised 95% of legacy regulatory reports in two years and 76% of interactive content in 18 months by redesigning the operating model, not porting reports.",
+            "points": [
+              "Led a team of six engineers as Development Team Lead.",
+              "Regulatory and management reporting for FINMA, SNB and overseas regulators across three jurisdictions.",
+              "Promoted from Associate Director to Director in under three years."
+            ]
+          },
+          {
+            "title": "Risk-governed autonomous trading engine",
+            "period": "2026",
+            "kind": "own build",
+            "headline": "Built an event-driven trading engine (~35k lines, 288 tests) with AI coding agents, where an autonomous strategy can never act outside limits a human set in advance.",
+            "points": [
+              "Two-stage risk layer, independent kill switch drilled live, append-only journal of every decision.",
+              "Seven go-live gates written before any engine code; paper trading only, no P&L claimed.",
+              "83 commits in under four weeks; ~6,900 lines of design documentation."
+            ]
+          },
+          {
+            "title": "Counterparty credit risk product, PrevioRisk",
+            "period": "2013",
+            "kind": "employment",
+            "headline": "Delivered a full CCR/CVA risk system to market in seven months against an eleven-month scope, managing 15 developers.",
+            "points": [
+              "Turned legal agreements (ISDA, netting, collateral/CSA terms) into exposure-aggregation product logic.",
+              "Basel 2/3/3.5 capital for 1,500+ trades computed in about 7 seconds; OCC/FRS-compliant supervisory reporting.",
+              "Validated pricing for 50+ structured product types; owned client communication and quality control."
+            ]
+          },
+          {
+            "title": "Universal semantic data model, UBS",
+            "period": "2017–2026",
+            "kind": "employment",
+            "headline": "Built and owned the first universal data model and semantic language for UBS Group Risk Control; it became the most-consumed risk report at UBS.",
+            "points": [
+              "Owned the semantic data model end to end as Product Owner; 600+ users across Switzerland, the US and Singapore.",
+              "Architected the Group Risk Control data integration for the UBS–Credit Suisse merger; multiple legacy systems decommissioned.",
+              "Chosen as the strategic foundation for the UBS–CS risk reporting integration."
+            ]
+          },
+          {
+            "title": "Auditable analytics engine for finance (own build, method)",
+            "period": "2026",
+            "kind": "own build",
+            "headline": "Designed and built a six-layer analytics engine that reproduces a published finance figure automatically, as rules at a commit × data at a snapshot hash.",
+            "points": [
+              "Freeze / verify / serve: a reconciliation gate that fails closed; a stale or altered snapshot is refused, never served.",
+              "Governed what-if simulators with ranges, sources, thresholds and reverse stress; facts kept separate from scenarios.",
+              "108 tests; logic written as SQL so it ports to a production engine."
+            ]
+          }
+        ],
+        "known_gaps": [
+          {
+            "title": "No KYC/AML/KYT product built",
+            "detail": "Regulatory work so far is risk, capital and supervisory reporting. Onboarding and transaction-monitoring flows would be new.",
+            "mitigation": "Built supervisory reporting for FINMA, SNB and US/Singapore regulators; turned legal agreement terms into product logic at PrevioRisk. LEVA's compliance analyst and legal counsel own the rules; the Product Architect turns them into flows."
+          }
+        ],
+        "operating_assumption": "He joins LEVA as Product Architect reporting to the CTO. LEVA's senior legal counsel and compliance analyst own legal and regulatory interpretation; a Financial Systems Engineer, a Lead Architect and full-stack engineers build with him. He prototypes with AI coding agents, as in his own builds, and has the usual onboarding time to learn LEVA's partnership structure and product.",
+        "build_speed": [
+          "This portal: first commit to live, access-controlled AI service in 31 minutes; page, proxy and 15 automated tests in 41 minutes (git timestamps, 20 Oct 2026).",
+          "Risk-governed trading engine: 83 commits, ~35,000 lines and 288 tests in under four weeks (Aug-Sep 2026).",
+          "AI CV-review tool: idea to a live, calibrated tool on GitHub Pages in about 3.5 months part-time, alongside an EMBA (2026).",
+          "PrevioRisk (2013, before AI tools): a full counterparty-risk product to market in 7 months against an 11-month plan, with 15 developers."
+        ]
+      },
+      "questions": {
+        "time_to_prototype": {
+          "type": "score",
+          "instructions": "How long would `candidate` need to build a clickable prototype of `project.title` on test data, good enough to demo to LEVA's deal managers or compliance team? A prototype needs no production integration, no compliance sign-off and no real customer data. Judge from `build_speed` (his measured pace with AI coding agents), `project.brief`, `project.characteristics`, `evidence`, and `known_gaps` with their `mitigation`.",
+          "criteria": [
+            "within 2 days",
+            "within 1 week",
+            "2 to 3 weeks",
+            "1 to 2 months",
+            "longer than 2 months"
+          ]
+        },
+        "mvp_success": {
+          "type": "noul",
+          "instructions": "With the support described in `operating_assumption`, will `candidate` lead `project.title` to a usable MVP that LEVA's customers or compliance team use within three months, rather than it stalling in specification? Judge from `build_speed`, `evidence`, `known_gaps` with their `mitigation`, `project.characteristics` and `operating_assumption`."
+        },
+        "evidence_fit": {
+          "type": "score",
+          "instructions": "How closely does the `evidence` match what `project.title` (`project.brief`) actually requires?",
+          "criteria": [
+            "none: no relevant evidence",
+            "adjacent: only transferable skills",
+            "partial: some core parts done before",
+            "strong: most core parts done before",
+            "direct: has delivered an equivalent product"
+          ]
+        },
+        "needs_specialist": {
+          "type": "noul",
+          "instructions": "Will `project.title` need outside specialist expertise (legal, tax, licensing or crypto-asset) that neither `candidate` nor LEVA's own legal counsel and compliance analyst can provide, rather than knowledge available inside the team or learnable on the job?"
+        },
+        "main_risk": {
+          "type": "choice",
+          "instructions": "What is the single biggest risk to `candidate` delivering `project.title`, given `evidence`, `known_gaps` and `project.characteristics`?",
+          "criteria": {
+            "domain": "missing domain knowledge (private markets, crypto assets, KYC/AML)",
+            "regulatory": "waiting on a regulator, auditor or licence approval",
+            "stakeholders": "aligning legal, compliance, customers and engineering",
+            "build": "the technical build itself",
+            "scope": "unclear scope or a changing vision",
+            "none": "no material risk stands out"
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 2392,
+        "output_tokens": 136
+      }
+    },
+    "eu": {
+      "model": "jev-1.13.0",
+      "questions_version": "2026-10-20.3",
+      "request_id": "req_01a1590dfa3d7b509516b3b775d3665a",
+      "answers": {
+        "time_to_prototype": {
+          "type": "score",
+          "score": 2.13,
+          "confidence": 0.57,
+          "legend": {
+            "0": "within 2 days",
+            "1": "within 1 week",
+            "2": "2 to 3 weeks",
+            "3": "1 to 2 months",
+            "4": "longer than 2 months"
+          },
+          "probabilities": {
+            "0": 0.01,
+            "1": 0.18,
+            "2": 0.51,
+            "3": 0.29,
+            "4": 0.01
+          }
+        },
+        "mvp_success": {
+          "type": "noul",
+          "noul": 0.49
+        },
+        "evidence_fit": {
+          "type": "score",
+          "score": 1.59,
+          "confidence": 0.59,
+          "legend": {
+            "0": "none: no relevant evidence",
+            "1": "adjacent: only transferable skills",
+            "2": "partial: some core parts done before",
+            "3": "strong: most core parts done before",
+            "4": "direct: has delivered an equivalent product"
+          },
+          "probabilities": {
+            "0": 0,
+            "1": 0.45,
+            "2": 0.51,
+            "3": 0.04,
+            "4": 0
+          }
+        },
+        "needs_specialist": {
+          "type": "noul",
+          "noul": 0.6
+        },
+        "main_risk": {
+          "type": "choice",
+          "choice": "regulatory",
+          "confidence": 0.65,
+          "probabilities": {
+            "domain": 0.22,
+            "regulatory": 0.71,
+            "stakeholders": 0.06,
+            "build": 0,
+            "scope": 0.01,
+            "none": 0
+          }
+        }
+      },
+      "derived": {
+        "p_mvp": 0.49,
+        "p_specialist": 0.6,
+        "weeks_dist": [
+          0.01,
+          0.18,
+          0.51,
+          0.29,
+          0.01
+        ],
+        "expected_weeks": 3.3,
+        "likely_band": 2,
+        "fit_level": 1.59,
+        "main_risk": "regulatory",
+        "main_risk_probs": {
+          "domain": 0.22,
+          "regulatory": 0.71,
+          "stakeholders": 0.06,
+          "build": 0,
+          "scope": 0.01,
+          "none": 0
+        }
+      },
+      "evidence": [
+        "Reporting operating model redesign, UBS",
+        "Universal semantic data model, UBS",
+        "Counterparty credit risk product, PrevioRisk",
+        "AI CV-review tool for CFA Society Switzerland (pro bono)",
+        "EMBA thesis: decision support for portfolio managers"
+      ],
+      "gaps": [
+        "No KYC/AML/KYT product built",
+        "No scaled-fintech product organisation"
+      ],
+      "state": {
+        "candidate": "Alexey Malashonak",
+        "role": "Product Architect at LEVA: Product-first role: set the roadmap, decide build, buy, partner or not build, hold financial, legal and regulatory complexity (securities, KYC/AML/KYT) and turn it into simple products, redesign processes rather than digitise them, and prototype and build meaningful parts with AI coding and agentic tools. Works alongside a Financial Systems Engineer.",
+        "company": "Co-investment syndication infrastructure: deal managers set up a vehicle, invite their investor network, collect commitments, close, and administer the portfolio to exit.",
+        "project": {
+          "title": "EU jurisdiction expansion",
+          "brief": "Make the partnership model and onboarding work for an EU jurisdiction: legal structure, tax treatment, licence requirements and product changes.",
+          "characteristics": "Regulatory depth: 95/100 (0 = No regulatory touchpoint, 100 = New licence or jurisdiction)\nDomain distance: 60/100 (0 = Core finance & risk mechanics, 100 = New ground: tokenisation, on-chain)\nHands-on build share: 30/100 (0 = Specify and steer, 100 = Prototype and build it myself)\nScope ambiguity: 75/100 (0 = Clear specification, 100 = Vision only, greenfield)\nStakeholder load: 95/100 (0 = Engineering only, 100 = Legal, compliance, customers, engineering)"
+        },
+        "evidence": [
+          {
+            "title": "Reporting operating model redesign, UBS",
+            "period": "2020–2022",
+            "kind": "employment",
+            "headline": "Digitalised 95% of legacy regulatory reports in two years and 76% of interactive content in 18 months by redesigning the operating model, not porting reports.",
+            "points": [
+              "Led a team of six engineers as Development Team Lead.",
+              "Regulatory and management reporting for FINMA, SNB and overseas regulators across three jurisdictions.",
+              "Promoted from Associate Director to Director in under three years."
+            ]
+          },
+          {
+            "title": "Universal semantic data model, UBS",
+            "period": "2017–2026",
+            "kind": "employment",
+            "headline": "Built and owned the first universal data model and semantic language for UBS Group Risk Control; it became the most-consumed risk report at UBS.",
+            "points": [
+              "Owned the semantic data model end to end as Product Owner; 600+ users across Switzerland, the US and Singapore.",
+              "Architected the Group Risk Control data integration for the UBS–Credit Suisse merger; multiple legacy systems decommissioned.",
+              "Chosen as the strategic foundation for the UBS–CS risk reporting integration."
+            ]
+          },
+          {
+            "title": "Counterparty credit risk product, PrevioRisk",
+            "period": "2013",
+            "kind": "employment",
+            "headline": "Delivered a full CCR/CVA risk system to market in seven months against an eleven-month scope, managing 15 developers.",
+            "points": [
+              "Turned legal agreements (ISDA, netting, collateral/CSA terms) into exposure-aggregation product logic.",
+              "Basel 2/3/3.5 capital for 1,500+ trades computed in about 7 seconds; OCC/FRS-compliant supervisory reporting.",
+              "Validated pricing for 50+ structured product types; owned client communication and quality control."
+            ]
+          },
+          {
+            "title": "AI CV-review tool for CFA Society Switzerland (pro bono)",
+            "period": "2025–2026",
+            "kind": "pro bono",
+            "headline": "Conceived and built an AI CV-review tool that turned a manual member service into a calibrated, auditable workflow, deployed on GitHub Pages.",
+            "points": [
+              "Codified an expert reviewer's heuristics into a 7-dimension rubric; fixed systematic score inflation (~88% vs 58–70% expected).",
+              "Pinned model, golden-snapshot drift regression, noise floor from repeat runs, a human gate on every output.",
+              "Privacy by default: no server-side storage of candidate data."
+            ]
+          },
+          {
+            "title": "EMBA thesis: decision support for portfolio managers",
+            "period": "2025–2026",
+            "kind": "education",
+            "headline": "Built a news-shock indicator (FinBERT NLP + market data) and tested it with 53 professional portfolio managers; highest thesis grade in the programme.",
+            "points": [
+              "Significant association with experts' risk decisions (β = −0.49, p = 0.0015).",
+              "Reported the null result on outcomes plainly: an adoption insight for decision-support tools.",
+              "~13,400 lines of reproducible Python."
+            ]
+          }
+        ],
+        "known_gaps": [
+          {
+            "title": "No KYC/AML/KYT product built",
+            "detail": "Regulatory work so far is risk, capital and supervisory reporting. Onboarding and transaction-monitoring flows would be new.",
+            "mitigation": "Built supervisory reporting for FINMA, SNB and US/Singapore regulators; turned legal agreement terms into product logic at PrevioRisk. LEVA's compliance analyst and legal counsel own the rules; the Product Architect turns them into flows."
+          },
+          {
+            "title": "No scaled-fintech product organisation",
+            "detail": "Product leadership was inside a bank and a 2013 software firm, not in a payments, banking or spend-management scale-up.",
+            "mitigation": "Led a 15-developer team to market in seven months at a software company and owned a product used by 600+ people across three regions."
+          }
+        ],
+        "operating_assumption": "He joins LEVA as Product Architect reporting to the CTO. LEVA's senior legal counsel and compliance analyst own legal and regulatory interpretation; a Financial Systems Engineer, a Lead Architect and full-stack engineers build with him. He prototypes with AI coding agents, as in his own builds, and has the usual onboarding time to learn LEVA's partnership structure and product.",
+        "build_speed": [
+          "This portal: first commit to live, access-controlled AI service in 31 minutes; page, proxy and 15 automated tests in 41 minutes (git timestamps, 20 Oct 2026).",
+          "Risk-governed trading engine: 83 commits, ~35,000 lines and 288 tests in under four weeks (Aug-Sep 2026).",
+          "AI CV-review tool: idea to a live, calibrated tool on GitHub Pages in about 3.5 months part-time, alongside an EMBA (2026).",
+          "PrevioRisk (2013, before AI tools): a full counterparty-risk product to market in 7 months against an 11-month plan, with 15 developers."
+        ]
+      },
+      "questions": {
+        "time_to_prototype": {
+          "type": "score",
+          "instructions": "How long would `candidate` need to build a clickable prototype of `project.title` on test data, good enough to demo to LEVA's deal managers or compliance team? A prototype needs no production integration, no compliance sign-off and no real customer data. Judge from `build_speed` (his measured pace with AI coding agents), `project.brief`, `project.characteristics`, `evidence`, and `known_gaps` with their `mitigation`.",
+          "criteria": [
+            "within 2 days",
+            "within 1 week",
+            "2 to 3 weeks",
+            "1 to 2 months",
+            "longer than 2 months"
+          ]
+        },
+        "mvp_success": {
+          "type": "noul",
+          "instructions": "With the support described in `operating_assumption`, will `candidate` lead `project.title` to a usable MVP that LEVA's customers or compliance team use within three months, rather than it stalling in specification? Judge from `build_speed`, `evidence`, `known_gaps` with their `mitigation`, `project.characteristics` and `operating_assumption`."
+        },
+        "evidence_fit": {
+          "type": "score",
+          "instructions": "How closely does the `evidence` match what `project.title` (`project.brief`) actually requires?",
+          "criteria": [
+            "none: no relevant evidence",
+            "adjacent: only transferable skills",
+            "partial: some core parts done before",
+            "strong: most core parts done before",
+            "direct: has delivered an equivalent product"
+          ]
+        },
+        "needs_specialist": {
+          "type": "noul",
+          "instructions": "Will `project.title` need outside specialist expertise (legal, tax, licensing or crypto-asset) that neither `candidate` nor LEVA's own legal counsel and compliance analyst can provide, rather than knowledge available inside the team or learnable on the job?"
+        },
+        "main_risk": {
+          "type": "choice",
+          "instructions": "What is the single biggest risk to `candidate` delivering `project.title`, given `evidence`, `known_gaps` and `project.characteristics`?",
+          "criteria": {
+            "domain": "missing domain knowledge (private markets, crypto assets, KYC/AML)",
+            "regulatory": "waiting on a regulator, auditor or licence approval",
+            "stakeholders": "aligning legal, compliance, customers and engineering",
+            "build": "the technical build itself",
+            "scope": "unclear scope or a changing vision",
+            "none": "no material risk stands out"
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 2498,
+        "output_tokens": 138
+      }
+    },
+    "tokenised": {
+      "model": "jev-1.13.0",
+      "questions_version": "2026-10-20.3",
+      "request_id": "req_01a1590dff2c75338cdc5947bb0d6e26",
+      "answers": {
+        "time_to_prototype": {
+          "type": "score",
+          "score": 1.96,
+          "confidence": 0.62,
+          "legend": {
+            "0": "within 2 days",
+            "1": "within 1 week",
+            "2": "2 to 3 weeks",
+            "3": "1 to 2 months",
+            "4": "longer than 2 months"
+          },
+          "probabilities": {
+            "0": 0.01,
+            "1": 0.22,
+            "2": 0.56,
+            "3": 0.2,
+            "4": 0.01
+          }
+        },
+        "mvp_success": {
+          "type": "noul",
+          "noul": 0.51
+        },
+        "evidence_fit": {
+          "type": "score",
+          "score": 1.46,
+          "confidence": 0.62,
+          "legend": {
+            "0": "none: no relevant evidence",
+            "1": "adjacent: only transferable skills",
+            "2": "partial: some core parts done before",
+            "3": "strong: most core parts done before",
+            "4": "direct: has delivered an equivalent product"
+          },
+          "probabilities": {
+            "0": 0,
+            "1": 0.55,
+            "2": 0.44,
+            "3": 0.01,
+            "4": 0
+          }
+        },
+        "needs_specialist": {
+          "type": "noul",
+          "noul": 0.59
+        },
+        "main_risk": {
+          "type": "choice",
+          "choice": "domain",
+          "confidence": 0.56,
+          "probabilities": {
+            "domain": 0.63,
+            "regulatory": 0.28,
+            "stakeholders": 0.01,
+            "build": 0,
+            "scope": 0.08,
+            "none": 0
+          }
+        }
+      },
+      "derived": {
+        "p_mvp": 0.51,
+        "p_specialist": 0.59,
+        "weeks_dist": [
+          0.01,
+          0.22,
+          0.56,
+          0.2,
+          0.01
+        ],
+        "expected_weeks": 2.9,
+        "likely_band": 2,
+        "fit_level": 1.46,
+        "main_risk": "domain",
+        "main_risk_probs": {
+          "domain": 0.63,
+          "regulatory": 0.28,
+          "stakeholders": 0.01,
+          "build": 0,
+          "scope": 0.08,
+          "none": 0
+        }
+      },
+      "evidence": [
+        "Counterparty credit risk product, PrevioRisk",
+        "Distressed portfolio valuation, VostokFinance",
+        "Risk-governed autonomous trading engine",
+        "AI CV-review tool for CFA Society Switzerland (pro bono)",
+        "EMBA thesis: decision support for portfolio managers"
+      ],
+      "gaps": [
+        "No KYC/AML/KYT product built",
+        "No private-markets or tokenisation delivery"
+      ],
+      "state": {
+        "candidate": "Alexey Malashonak",
+        "role": "Product Architect at LEVA: Product-first role: set the roadmap, decide build, buy, partner or not build, hold financial, legal and regulatory complexity (securities, KYC/AML/KYT) and turn it into simple products, redesign processes rather than digitise them, and prototype and build meaningful parts with AI coding and agentic tools. Works alongside a Financial Systems Engineer.",
+        "company": "Co-investment syndication infrastructure: deal managers set up a vehicle, invite their investor network, collect commitments, close, and administer the portfolio to exit.",
+        "project": {
+          "title": "Tokenised syndicate units",
+          "brief": "Represent co-investors' economic rights as DLT-based securities, with transfer rules for secondaries and settlement on-chain.",
+          "characteristics": "Regulatory depth: 80/100 (0 = No regulatory touchpoint, 100 = New licence or jurisdiction)\nDomain distance: 95/100 (0 = Core finance & risk mechanics, 100 = New ground: tokenisation, on-chain)\nHands-on build share: 60/100 (0 = Specify and steer, 100 = Prototype and build it myself)\nScope ambiguity: 90/100 (0 = Clear specification, 100 = Vision only, greenfield)\nStakeholder load: 75/100 (0 = Engineering only, 100 = Legal, compliance, customers, engineering)"
+        },
+        "evidence": [
+          {
+            "title": "Counterparty credit risk product, PrevioRisk",
+            "period": "2013",
+            "kind": "employment",
+            "headline": "Delivered a full CCR/CVA risk system to market in seven months against an eleven-month scope, managing 15 developers.",
+            "points": [
+              "Turned legal agreements (ISDA, netting, collateral/CSA terms) into exposure-aggregation product logic.",
+              "Basel 2/3/3.5 capital for 1,500+ trades computed in about 7 seconds; OCC/FRS-compliant supervisory reporting.",
+              "Validated pricing for 50+ structured product types; owned client communication and quality control."
+            ]
+          },
+          {
+            "title": "Distressed portfolio valuation, VostokFinance",
+            "period": "2014–2015",
+            "kind": "employment",
+            "headline": "Redesigned the pre-deal valuation scorecard: GINI from 0.16 to 0.59, valuation effort from 6 to 0.1 man-hours per case.",
+            "points": [
+              "Built an investment valuation and cash-flow planning system for purchased portfolios.",
+              "Reforecasting with segmentation and macro and operational variables."
+            ]
+          },
+          {
+            "title": "Risk-governed autonomous trading engine",
+            "period": "2026",
+            "kind": "own build",
+            "headline": "Built an event-driven trading engine (~35k lines, 288 tests) with AI coding agents, where an autonomous strategy can never act outside limits a human set in advance.",
+            "points": [
+              "Two-stage risk layer, independent kill switch drilled live, append-only journal of every decision.",
+              "Seven go-live gates written before any engine code; paper trading only, no P&L claimed.",
+              "83 commits in under four weeks; ~6,900 lines of design documentation."
+            ]
+          },
+          {
+            "title": "AI CV-review tool for CFA Society Switzerland (pro bono)",
+            "period": "2025–2026",
+            "kind": "pro bono",
+            "headline": "Conceived and built an AI CV-review tool that turned a manual member service into a calibrated, auditable workflow, deployed on GitHub Pages.",
+            "points": [
+              "Codified an expert reviewer's heuristics into a 7-dimension rubric; fixed systematic score inflation (~88% vs 58–70% expected).",
+              "Pinned model, golden-snapshot drift regression, noise floor from repeat runs, a human gate on every output.",
+              "Privacy by default: no server-side storage of candidate data."
+            ]
+          },
+          {
+            "title": "EMBA thesis: decision support for portfolio managers",
+            "period": "2025–2026",
+            "kind": "education",
+            "headline": "Built a news-shock indicator (FinBERT NLP + market data) and tested it with 53 professional portfolio managers; highest thesis grade in the programme.",
+            "points": [
+              "Significant association with experts' risk decisions (β = −0.49, p = 0.0015).",
+              "Reported the null result on outcomes plainly: an adoption insight for decision-support tools.",
+              "~13,400 lines of reproducible Python."
+            ]
+          }
+        ],
+        "known_gaps": [
+          {
+            "title": "No KYC/AML/KYT product built",
+            "detail": "Regulatory work so far is risk, capital and supervisory reporting. Onboarding and transaction-monitoring flows would be new.",
+            "mitigation": "Built supervisory reporting for FINMA, SNB and US/Singapore regulators; turned legal agreement terms into product logic at PrevioRisk. LEVA's compliance analyst and legal counsel own the rules; the Product Architect turns them into flows."
+          },
+          {
+            "title": "No private-markets or tokenisation delivery",
+            "detail": "Securities, derivatives and deal-valuation mechanics are covered; syndication, SPV and on-chain settlement experience is not.",
+            "mitigation": "Deal valuation and cash-flow mechanics are covered (VostokFinance), as are securities and derivatives (CFA, FRM, 50+ product types validated). LEVA's legal team holds the partnership structure; the product work is turning it into flows."
+          }
+        ],
+        "operating_assumption": "He joins LEVA as Product Architect reporting to the CTO. LEVA's senior legal counsel and compliance analyst own legal and regulatory interpretation; a Financial Systems Engineer, a Lead Architect and full-stack engineers build with him. He prototypes with AI coding agents, as in his own builds, and has the usual onboarding time to learn LEVA's partnership structure and product.",
+        "build_speed": [
+          "This portal: first commit to live, access-controlled AI service in 31 minutes; page, proxy and 15 automated tests in 41 minutes (git timestamps, 20 Oct 2026).",
+          "Risk-governed trading engine: 83 commits, ~35,000 lines and 288 tests in under four weeks (Aug-Sep 2026).",
+          "AI CV-review tool: idea to a live, calibrated tool on GitHub Pages in about 3.5 months part-time, alongside an EMBA (2026).",
+          "PrevioRisk (2013, before AI tools): a full counterparty-risk product to market in 7 months against an 11-month plan, with 15 developers."
+        ]
+      },
+      "questions": {
+        "time_to_prototype": {
+          "type": "score",
+          "instructions": "How long would `candidate` need to build a clickable prototype of `project.title` on test data, good enough to demo to LEVA's deal managers or compliance team? A prototype needs no production integration, no compliance sign-off and no real customer data. Judge from `build_speed` (his measured pace with AI coding agents), `project.brief`, `project.characteristics`, `evidence`, and `known_gaps` with their `mitigation`.",
+          "criteria": [
+            "within 2 days",
+            "within 1 week",
+            "2 to 3 weeks",
+            "1 to 2 months",
+            "longer than 2 months"
+          ]
+        },
+        "mvp_success": {
+          "type": "noul",
+          "instructions": "With the support described in `operating_assumption`, will `candidate` lead `project.title` to a usable MVP that LEVA's customers or compliance team use within three months, rather than it stalling in specification? Judge from `build_speed`, `evidence`, `known_gaps` with their `mitigation`, `project.characteristics` and `operating_assumption`."
+        },
+        "evidence_fit": {
+          "type": "score",
+          "instructions": "How closely does the `evidence` match what `project.title` (`project.brief`) actually requires?",
+          "criteria": [
+            "none: no relevant evidence",
+            "adjacent: only transferable skills",
+            "partial: some core parts done before",
+            "strong: most core parts done before",
+            "direct: has delivered an equivalent product"
+          ]
+        },
+        "needs_specialist": {
+          "type": "noul",
+          "instructions": "Will `project.title` need outside specialist expertise (legal, tax, licensing or crypto-asset) that neither `candidate` nor LEVA's own legal counsel and compliance analyst can provide, rather than knowledge available inside the team or learnable on the job?"
+        },
+        "main_risk": {
+          "type": "choice",
+          "instructions": "What is the single biggest risk to `candidate` delivering `project.title`, given `evidence`, `known_gaps` and `project.characteristics`?",
+          "criteria": {
+            "domain": "missing domain knowledge (private markets, crypto assets, KYC/AML)",
+            "regulatory": "waiting on a regulator, auditor or licence approval",
+            "stakeholders": "aligning legal, compliance, customers and engineering",
+            "build": "the technical build itself",
+            "scope": "unclear scope or a changing vision",
+            "none": "no material risk stands out"
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 2508,
+        "output_tokens": 136
+      }
+    },
+    "termsheet": {
+      "model": "jev-1.13.0",
+      "questions_version": "2026-10-20.3",
+      "request_id": "req_01a1590e04097bab96705a0fc276ecb7",
+      "answers": {
+        "time_to_prototype": {
+          "type": "score",
+          "score": 0.96,
+          "confidence": 0.65,
+          "legend": {
+            "0": "within 2 days",
+            "1": "within 1 week",
+            "2": "2 to 3 weeks",
+            "3": "1 to 2 months",
+            "4": "longer than 2 months"
+          },
+          "probabilities": {
+            "0": 0.23,
+            "1": 0.59,
+            "2": 0.17,
+            "3": 0.01,
+            "4": 0
+          }
+        },
+        "mvp_success": {
+          "type": "noul",
+          "noul": 0.74
+        },
+        "evidence_fit": {
+          "type": "score",
+          "score": 1.64,
+          "confidence": 0.47,
+          "legend": {
+            "0": "none: no relevant evidence",
+            "1": "adjacent: only transferable skills",
+            "2": "partial: some core parts done before",
+            "3": "strong: most core parts done before",
+            "4": "direct: has delivered an equivalent product"
+          },
+          "probabilities": {
+            "0": 0,
+            "1": 0.49,
+            "2": 0.38,
+            "3": 0.13,
+            "4": 0
+          }
+        },
+        "needs_specialist": {
+          "type": "noul",
+          "noul": 0.23
+        },
+        "main_risk": {
+          "type": "choice",
+          "choice": "stakeholders",
+          "confidence": 0.35,
+          "probabilities": {
+            "domain": 0.22,
+            "regulatory": 0.03,
+            "stakeholders": 0.46,
+            "build": 0.03,
+            "scope": 0.24,
+            "none": 0.02
+          }
+        }
+      },
+      "derived": {
+        "p_mvp": 0.74,
+        "p_specialist": 0.23,
+        "weeks_dist": [
+          0.23,
+          0.59,
+          0.17,
+          0.01,
+          0
+        ],
+        "expected_weeks": 1,
+        "likely_band": 1,
+        "fit_level": 1.64,
+        "main_risk": "stakeholders",
+        "main_risk_probs": {
+          "domain": 0.22,
+          "regulatory": 0.03,
+          "stakeholders": 0.46,
+          "build": 0.03,
+          "scope": 0.24,
+          "none": 0.02
+        }
+      },
+      "evidence": [
+        "AI CV-review tool for CFA Society Switzerland (pro bono)",
+        "Typed AI model as a governed research instrument",
+        "Auditable analytics engine for finance (own build, method)",
+        "Distressed portfolio valuation, VostokFinance",
+        "AI-native delivery under human control"
+      ],
+      "gaps": [
+        "No formal software-engineering background"
+      ],
+      "state": {
+        "candidate": "Alexey Malashonak",
+        "role": "Product Architect at LEVA: Product-first role: set the roadmap, decide build, buy, partner or not build, hold financial, legal and regulatory complexity (securities, KYC/AML/KYT) and turn it into simple products, redesign processes rather than digitise them, and prototype and build meaningful parts with AI coding and agentic tools. Works alongside a Financial Systems Engineer.",
+        "company": "Co-investment syndication infrastructure: deal managers set up a vehicle, invite their investor network, collect commitments, close, and administer the portfolio to exit.",
+        "project": {
+          "title": "AI term-sheet intake",
+          "brief": "Read an uploaded term sheet or CLA, propose structured deal terms with the source sentence for each, let the deal manager confirm, and feed the existing structuring flow.",
+          "characteristics": "Regulatory depth: 40/100 (0 = No regulatory touchpoint, 100 = New licence or jurisdiction)\nDomain distance: 30/100 (0 = Core finance & risk mechanics, 100 = New ground: tokenisation, on-chain)\nHands-on build share: 90/100 (0 = Specify and steer, 100 = Prototype and build it myself)\nScope ambiguity: 55/100 (0 = Clear specification, 100 = Vision only, greenfield)\nStakeholder load: 45/100 (0 = Engineering only, 100 = Legal, compliance, customers, engineering)"
+        },
+        "evidence": [
+          {
+            "title": "AI CV-review tool for CFA Society Switzerland (pro bono)",
+            "period": "2025–2026",
+            "kind": "pro bono",
+            "headline": "Conceived and built an AI CV-review tool that turned a manual member service into a calibrated, auditable workflow, deployed on GitHub Pages.",
+            "points": [
+              "Codified an expert reviewer's heuristics into a 7-dimension rubric; fixed systematic score inflation (~88% vs 58–70% expected).",
+              "Pinned model, golden-snapshot drift regression, noise floor from repeat runs, a human gate on every output.",
+              "Privacy by default: no server-side storage of candidate data."
+            ]
+          },
+          {
+            "title": "Typed AI model as a governed research instrument",
+            "period": "2026",
+            "kind": "own build",
+            "headline": "Used a structured-output AI judgment model to score 10,988 news events, and built the controls that decide whether its output can be trusted.",
+            "points": [
+              "Knowledge-cutoff contamination test (4,070 calls) before any scoring; result disclosed as inconclusive.",
+              "Pre-registered hypotheses, holdout, multiple-testing ledger; 15 of 19 hypotheses killed by the regime.",
+              "Found no directional signal and a clear magnitude signal; reported both plainly."
+            ]
+          },
+          {
+            "title": "Auditable analytics engine for finance (own build, method)",
+            "period": "2026",
+            "kind": "own build",
+            "headline": "Designed and built a six-layer analytics engine that reproduces a published finance figure automatically, as rules at a commit × data at a snapshot hash.",
+            "points": [
+              "Freeze / verify / serve: a reconciliation gate that fails closed; a stale or altered snapshot is refused, never served.",
+              "Governed what-if simulators with ranges, sources, thresholds and reverse stress; facts kept separate from scenarios.",
+              "108 tests; logic written as SQL so it ports to a production engine."
+            ]
+          },
+          {
+            "title": "Distressed portfolio valuation, VostokFinance",
+            "period": "2014–2015",
+            "kind": "employment",
+            "headline": "Redesigned the pre-deal valuation scorecard: GINI from 0.16 to 0.59, valuation effort from 6 to 0.1 man-hours per case.",
+            "points": [
+              "Built an investment valuation and cash-flow planning system for purchased portfolios.",
+              "Reforecasting with segmentation and macro and operational variables."
+            ]
+          },
+          {
+            "title": "AI-native delivery under human control",
+            "period": "2026",
+            "kind": "own build",
+            "headline": "Runs day-to-day engineering through a designed system of AI agents: Claude Code as lead engineer, Codex for mechanical tasks, every diff reviewed before merge.",
+            "points": [
+              "Written task briefs, isolated worktrees, acceptance checks run by the lead, not the agent.",
+              "Model tiering as a cost and quality decision; pinned versions re-baselined on upgrade.",
+              "Human-in-the-loop by construction: no agent sends mail, enters passwords or submits forms."
+            ]
+          }
+        ],
+        "known_gaps": [
+          {
+            "title": "No formal software-engineering background",
+            "detail": "No CS degree and no production engineering employment. Builds with AI agents under tests and review; the codebases are evidence, not a job title.",
+            "mitigation": "Ships tested code with AI agents under review: 288 tests in the trading engine, 108 in the analytics engine. The role asks for exactly this way of building."
+          }
+        ],
+        "operating_assumption": "He joins LEVA as Product Architect reporting to the CTO. LEVA's senior legal counsel and compliance analyst own legal and regulatory interpretation; a Financial Systems Engineer, a Lead Architect and full-stack engineers build with him. He prototypes with AI coding agents, as in his own builds, and has the usual onboarding time to learn LEVA's partnership structure and product.",
+        "build_speed": [
+          "This portal: first commit to live, access-controlled AI service in 31 minutes; page, proxy and 15 automated tests in 41 minutes (git timestamps, 20 Oct 2026).",
+          "Risk-governed trading engine: 83 commits, ~35,000 lines and 288 tests in under four weeks (Aug-Sep 2026).",
+          "AI CV-review tool: idea to a live, calibrated tool on GitHub Pages in about 3.5 months part-time, alongside an EMBA (2026).",
+          "PrevioRisk (2013, before AI tools): a full counterparty-risk product to market in 7 months against an 11-month plan, with 15 developers."
+        ]
+      },
+      "questions": {
+        "time_to_prototype": {
+          "type": "score",
+          "instructions": "How long would `candidate` need to build a clickable prototype of `project.title` on test data, good enough to demo to LEVA's deal managers or compliance team? A prototype needs no production integration, no compliance sign-off and no real customer data. Judge from `build_speed` (his measured pace with AI coding agents), `project.brief`, `project.characteristics`, `evidence`, and `known_gaps` with their `mitigation`.",
+          "criteria": [
+            "within 2 days",
+            "within 1 week",
+            "2 to 3 weeks",
+            "1 to 2 months",
+            "longer than 2 months"
+          ]
+        },
+        "mvp_success": {
+          "type": "noul",
+          "instructions": "With the support described in `operating_assumption`, will `candidate` lead `project.title` to a usable MVP that LEVA's customers or compliance team use within three months, rather than it stalling in specification? Judge from `build_speed`, `evidence`, `known_gaps` with their `mitigation`, `project.characteristics` and `operating_assumption`."
+        },
+        "evidence_fit": {
+          "type": "score",
+          "instructions": "How closely does the `evidence` match what `project.title` (`project.brief`) actually requires?",
+          "criteria": [
+            "none: no relevant evidence",
+            "adjacent: only transferable skills",
+            "partial: some core parts done before",
+            "strong: most core parts done before",
+            "direct: has delivered an equivalent product"
+          ]
+        },
+        "needs_specialist": {
+          "type": "noul",
+          "instructions": "Will `project.title` need outside specialist expertise (legal, tax, licensing or crypto-asset) that neither `candidate` nor LEVA's own legal counsel and compliance analyst can provide, rather than knowledge available inside the team or learnable on the job?"
+        },
+        "main_risk": {
+          "type": "choice",
+          "instructions": "What is the single biggest risk to `candidate` delivering `project.title`, given `evidence`, `known_gaps` and `project.characteristics`?",
+          "criteria": {
+            "domain": "missing domain knowledge (private markets, crypto assets, KYC/AML)",
+            "regulatory": "waiting on a regulator, auditor or licence approval",
+            "stakeholders": "aligning legal, compliance, customers and engineering",
+            "build": "the technical build itself",
+            "scope": "unclear scope or a changing vision",
+            "none": "no material risk stands out"
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 2357,
+        "output_tokens": 139
+      }
+    }
+  }
+}
