@@ -14,8 +14,8 @@ First target: LEVA, Product Architect (`docs/leva/`). Built to be retargeted: on
 
 ## Hard rules
 - **Public repo.** Only publishable facts: CV/LinkedIn level. No client names, pricing, holdings, P&L, psychometrics,
-  salary history, phone number. Pro bono is never employment. The consulting engagement (own practice) is never named
-  or described; its engine may be described as method only.
+  salary history, phone number. Pro bono is never employment. Client work is never named
+  or described; own builds may be described as method only.
 - **No secrets in the repo**, ever: keys and the access code live only in Cloudflare secrets (`wrangler secret put`),
   typed by Alex. `.dev.vars` is gitignored.
 - AI never computes a number that the page presents as fact. Jev gives judgments, labelled as such; code does the rest.
